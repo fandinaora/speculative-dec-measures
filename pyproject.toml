@@ -1,0 +1,32 @@
+[project]
+name = "llama-cpp-bench"
+version = "0.1.0"
+description = "Benchmarking and evaluation tools for llama.cpp code completion"
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+    "datasets>=2.0.0",
+    "pandas>=1.5.0",
+    "matplotlib>=3.5.0",
+    "seaborn>=0.12.0",
+    "nltk>=3.8",
+    "sacrebleu>=2.0.0",
+    "human-eval>=1.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "black>=22.0.0",
+    "flake8>=5.0.0",
+]
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["utils", "experiments"]
+
+# Note: NLTK resources (punkt_tab) will be auto-downloaded on first use
+# If you want to download manually: python -c "import nltk; nltk.download('punkt_tab')"

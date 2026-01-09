@@ -1,0 +1,4 @@
+Task: {task_type}
+Code to complete:
+{code}
+Instructions: {instructions}

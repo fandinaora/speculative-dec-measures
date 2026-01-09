@@ -1,0 +1,72 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Results and data files (keep structure, ignore large data)
+results/**/*.csv
+results/**/*.json
+results/**/*.jsonl
+results/**/*.pkl
+results/**/*.pickle
+
+# Binary executables and DLLs
+*.exe
+*.dll
+*.bin
+cudart-llama-bin-*/
+llama-*-bin-*/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# pytest
+.pytest_cache/
+.coverage
+htmlcov/
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp

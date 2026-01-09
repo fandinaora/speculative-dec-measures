@@ -1,0 +1,7 @@
+You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+{example_prompt}
+
+Complete the function: 
