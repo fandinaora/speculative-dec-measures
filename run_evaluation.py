@@ -2,10 +2,92 @@
 Entry point for running evaluation experiments using the OOP structure.
 """
 from typing import Dict, Any
+import argparse
 import json
 from pathlib import Path
 import pandas as pd
 from experiments.evaluation import EvaluationExperiment
+
+
+def parse_args():
+    """Parse command-line arguments."""
+    parser = argparse.ArgumentParser(
+        description="Run code quality evaluation experiments.",
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter
+    )
+    
+    # Server configuration
+    parser.add_argument(
+        '--server_url', 
+        type=str, 
+        default="http://127.0.0.1:8081",
+        help="URL of the llama.cpp server"
+    )
+    parser.add_argument(
+        '--model_name', 
+        type=str, 
+        default="qwen2.5-7b-instruct",
+        help="Name of the model being tested"
+    )
+    
+    # Output configuration
+    parser.add_argument(
+        '--output_dir', 
+        type=str, 
+        default="results",
+        help="Base directory for saving results"
+    )
+    parser.add_argument(
+        '--experiment_name', 
+        type=str, 
+        default="evaluation",
+        help="Name of the experiment (used in output filenames)"
+    )
+    
+    # Dataset configuration
+    parser.add_argument(
+        '--dataset', 
+        type=str, 
+        default="openai_humaneval",
+        help="Dataset to use for evaluation"
+    )
+    parser.add_argument(
+        '--num_samples', 
+        type=int, 
+        default=100,
+        help="Number of samples to evaluate (max 164 for HumanEval)"
+    )
+    parser.add_argument(
+        '--seed', 
+        type=int, 
+        default=2026,
+        help="Random seed for reproducibility"
+    )
+    
+    # Generation configuration
+    parser.add_argument(
+        '--max_tokens', 
+        type=int, 
+        default=512,
+        help="Maximum tokens to generate for each completion"
+    )
+    
+    # Output options
+    parser.add_argument(
+        '--no_save', 
+        action='store_false',
+        dest='save',
+        default=True,
+        help="Disable saving results to files"
+    )
+    parser.add_argument(
+        '--plot', 
+        action='store_true',
+        default=False,
+        help="Enable generating plots (not yet implemented)"
+    )
+    
+    return parser.parse_args()
 
 
 def analyze_results(results: Dict[str, Any]) -> Dict[str, Any]:
@@ -44,12 +126,15 @@ def analyze_results(results: Dict[str, Any]) -> Dict[str, Any]:
 
 
 if __name__ == "__main__":
+    # Parse command-line arguments
+    args = parse_args()
+    
     # Configuration
     config = {
-        'server_url': "http://127.0.0.1:8081",
-        'model_name': "qwen2.5-7b-instruct",
-        'output_dir': "results",  # Base output directory
-        'experiment_name': "evaluation",  # Custom name (used in output filenames and subdirectory)
+        'server_url': args.server_url,
+        'model_name': args.model_name,
+        'output_dir': args.output_dir,
+        'experiment_name': args.experiment_name,
     }
     
     # Create experiment instance
@@ -58,17 +143,15 @@ if __name__ == "__main__":
     # Execute experiment
     results = experiment.execute(
         load_kwargs={
-            'dataset': "openai_humaneval",
-            'num_samples': 100, 
-            'seed': 2026
+            'dataset': args.dataset,
+            'num_samples': args.num_samples, 
+            'seed': args.seed
         },
         run_kwargs={
-            'max_tokens': 512  
+            'max_tokens': args.max_tokens  
         },
-        #metrics=['exact_match', 'bleu'],  # Specify metrics to evaluate
-        # metrics=None,  # If None, computes all available metrics (default)
-        save=True,
-        plot=False  
+        save=args.save,
+        plot=args.plot  
     )
     
     print("Evaluation complete!")

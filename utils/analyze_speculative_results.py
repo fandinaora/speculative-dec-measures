@@ -248,12 +248,6 @@ def plot_evaluation_time(total_times: pd.DataFrame, output_file: str = None):
         ax.text(bar.get_x() + bar.get_width()/2., height + height*0.02,
                 label, ha='center', va='bottom', fontsize=9, fontweight='bold')
     
-    # Add sample count annotation
-    for i, (bar, count) in enumerate(zip(bars, total_times['num_samples'].values)):
-        height = bar.get_height()
-        ax.text(bar.get_x() + bar.get_width()/2., -height*0.05,
-                f'n={int(count)}', ha='center', va='top', fontsize=8, style='italic', color='gray')
-    
     plt.tight_layout()
     
     if output_file:

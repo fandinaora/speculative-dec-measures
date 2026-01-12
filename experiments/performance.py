@@ -213,6 +213,7 @@ class PerformanceExperiment(Experiment):
         max_tokens: int,
         sample_id: int,
         temperature: float = 0.0,
+        seed: int = 42,
         speculative_dec_params: Dict[str, Any] = None
     ) -> Dict[str, Any]:
         """
@@ -223,6 +224,7 @@ class PerformanceExperiment(Experiment):
             max_tokens: Maximum tokens to generate
             sample_id: ID of the sample for tracking
             temperature: Sampling temperature (0.0 = deterministic, >0.0 = more diverse). Default: 0.0
+            seed: Random seed for reproducibility. Default: 42
             speculative_dec_params: Optional override for speculative decoding parameters.
                                    If None, uses self.speculative_dec_params
             
@@ -249,6 +251,7 @@ class PerformanceExperiment(Experiment):
                 self.server_url,
                 self.model_name,
                 temperature=temperature,
+                seed=seed,
                 **spec_params
             )
         except Exception as e:

@@ -27,7 +27,7 @@ def measure_ttft(content: str, max_tokens: int, server_url: str, model_name: str
     headers = {"Content-Type": "application/json"}
 
     start = time.perf_counter()
-    with requests.post(url, headers=headers, json=chat_payload(content, max_tokens, model_name, stream=True, temperature=temperature, **kwargs), stream=True) as resp:
+    with requests.post(url, headers=headers, json=chat_payload(content, max_tokens, model_name, stream=True, temperature=temperature, **kwargs), stream=True, timeout=300) as resp:
         resp.raise_for_status()
         for raw in resp.iter_lines(decode_unicode=True):
             if not raw:
@@ -78,8 +78,14 @@ def measure_server_side_metrics(content: str, max_tokens: int, server_url: str, 
     url = f"{server_url}/v1/chat/completions"
     headers = {"Content-Type": "application/json"}
     
-    # Simple non-streaming request
-    response = requests.post(url, headers=headers, json=chat_payload(content, max_tokens, model_name, stream=False, temperature=temperature, **kwargs))
+    # Simple non-streaming request with timeout
+    # Timeout set to 300 seconds (5 minutes) to handle long generations
+    response = requests.post(
+        url, 
+        headers=headers, 
+        json=chat_payload(content, max_tokens, model_name, stream=False, temperature=temperature, **kwargs),
+        timeout=300
+    )
     response.raise_for_status()
     payload = response.json()
     

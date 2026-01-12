@@ -201,6 +201,7 @@ class EvaluationExperiment(Experiment):
                     max_tokens, 
                     sample_id=i,
                     temperature=0.0,  # Deterministic generation
+                    seed=42,  # Fixed seed for reproducibility
                     speculative_dec_params=spec_params
                 )
                 
@@ -302,6 +303,7 @@ class EvaluationExperiment(Experiment):
         max_tokens: int,
         sample_id: int,
         temperature: float = 0.0,
+        seed: int = 42,
         speculative_dec_params: Dict[str, Any] = None
     ) -> Dict[str, Any]:
         """
@@ -324,13 +326,14 @@ class EvaluationExperiment(Experiment):
         # Use provided params or fall back to instance params
         spec_params = speculative_dec_params if speculative_dec_params is not None else self.speculative_dec_params
         
-        # Get response from server (temperature and speculative params passed)
+        # Get response from server (temperature, seed, and speculative params passed)
         metrics = measure_server_side_metrics(
             content,
             max_tokens,
             self.server_url,
             self.model_name,
             temperature=temperature,
+            seed=seed,
             **spec_params
         )
         

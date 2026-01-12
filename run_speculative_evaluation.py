@@ -5,10 +5,112 @@ This script runs evaluation with a single draft step size (n_max) and computes
 all evaluation metrics (exact match, BLEU, unit tests).
 """
 from typing import Dict, Any
+import argparse
 import json
 from pathlib import Path
 import pandas as pd
 from experiments.evaluation import EvaluationExperiment
+
+
+def parse_args():
+    """Parse command-line arguments."""
+    parser = argparse.ArgumentParser(
+        description="Run code quality evaluation with speculative decoding.",
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter
+    )
+    
+    # Server configuration
+    parser.add_argument(
+        '--server_url', 
+        type=str, 
+        default="http://127.0.0.1:8081",
+        help="URL of the llama.cpp server"
+    )
+    parser.add_argument(
+        '--model_name', 
+        type=str, 
+        default="qwen2.5-7b-instruct",
+        help="Name of the model being tested"
+    )
+    
+    # Output configuration
+    parser.add_argument(
+        '--output_dir', 
+        type=str, 
+        default="results",
+        help="Base directory for saving results"
+    )
+    parser.add_argument(
+        '--experiment_name', 
+        type=str, 
+        default=None,
+        help="Name of the experiment (default: 'evaluation_speculative_n{DRAFT_STEP_SIZE}')"
+    )
+    
+    # Dataset configuration
+    parser.add_argument(
+        '--dataset', 
+        type=str, 
+        default="openai_humaneval",
+        help="Dataset to use for evaluation"
+    )
+    parser.add_argument(
+        '--num_samples', 
+        type=int, 
+        default=100,
+        help="Number of samples to evaluate (max 164 for HumanEval)"
+    )
+    parser.add_argument(
+        '--seed', 
+        type=int, 
+        default=2026,
+        help="Random seed for reproducibility"
+    )
+    
+    # Generation configuration
+    parser.add_argument(
+        '--max_tokens', 
+        type=int, 
+        default=512,
+        help="Maximum tokens to generate for each completion"
+    )
+    
+    # Speculative decoding configuration
+    parser.add_argument(
+        '--draft_step_size', 
+        type=int, 
+        default=50,
+        help="Draft step size (speculative.n_max)"
+    )
+    parser.add_argument(
+        '--spec_n_min', 
+        type=int, 
+        default=2,
+        help="Minimum draft tokens (speculative.n_min)"
+    )
+    parser.add_argument(
+        '--spec_p_min', 
+        type=float, 
+        default=0.5,
+        help="Minimum probability threshold (speculative.p_min)"
+    )
+    
+    # Output options
+    parser.add_argument(
+        '--no_save', 
+        action='store_false',
+        dest='save',
+        default=True,
+        help="Disable saving results to files"
+    )
+    parser.add_argument(
+        '--plot', 
+        action='store_true',
+        default=False,
+        help="Enable generating plots (not yet implemented)"
+    )
+    
+    return parser.parse_args()
 
 
 def analyze_results(results: Dict[str, Any]) -> Dict[str, Any]:
@@ -47,19 +149,25 @@ def analyze_results(results: Dict[str, Any]) -> Dict[str, Any]:
 
 
 if __name__ == "__main__":
-    # Configuration
-    # Set the draft step size (n_max) here
-    DRAFT_STEP_SIZE = 50  # Change this to test different draft step sizes
+    # Parse command-line arguments
+    args = parse_args()
     
+    # Use draft_step_size for configuration
+    DRAFT_STEP_SIZE = args.draft_step_size
+    
+    # Generate experiment name if not provided
+    experiment_name = args.experiment_name if args.experiment_name else f"evaluation_speculative_n{DRAFT_STEP_SIZE}"
+    
+    # Configuration
     config = {
-        'server_url': "http://127.0.0.1:8081",
-        'model_name': "qwen2.5-7b-instruct",
-        'output_dir': "results",
-        'experiment_name': f"evaluation_speculative_n{DRAFT_STEP_SIZE}",  # Include n_max in experiment name
+        'server_url': args.server_url,
+        'model_name': args.model_name,
+        'output_dir': args.output_dir,
+        'experiment_name': experiment_name,
         'speculative_dec_params': {
-            "speculative.n_max": DRAFT_STEP_SIZE,  # Single draft step size
-            "speculative.n_min": 2,
-            "speculative.p_min": 0.5
+            "speculative.n_max": DRAFT_STEP_SIZE,
+            "speculative.n_min": args.spec_n_min,
+            "speculative.p_min": args.spec_p_min
         }
     }
     
@@ -72,16 +180,15 @@ if __name__ == "__main__":
     # Execute experiment
     results = experiment.execute(
         load_kwargs={
-            'dataset': "openai_humaneval",
-            'num_samples': 100,  # Adjust as needed
-            'seed': 2026
+            'dataset': args.dataset,
+            'num_samples': args.num_samples,
+            'seed': args.seed
         },
         run_kwargs={
-            'max_tokens': 512
+            'max_tokens': args.max_tokens
         },
-        # metrics=None means compute all available metrics (exact_match, bleu, unit_tests)
-        save=True,
-        plot=False  # Evaluation plotting not yet implemented
+        save=args.save,
+        plot=args.plot
     )
     
     print("Evaluation complete!")
