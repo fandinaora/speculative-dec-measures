@@ -1,0 +1,20 @@
+{
+  "experiment_name": "evaluation_speculative_n50",
+  "model_name": "qwen2.5-7b-instruct",
+  "draft_step_size": 50,
+  "speculative_dec_params": {
+    "speculative.n_max": 50,
+    "speculative.n_min": 2,
+    "speculative.p_min": 0.5
+  },
+  "total_samples": 100,
+  "metrics": {
+    "avg_bleu_score": 0.2681321594763349,
+    "exact_match_rate": 0.03,
+    "unit_test_pass_rate": 0.58
+  },
+  "counts": {
+    "exact_matches": 3,
+    "unit_test_passed": 58
+  }
+}

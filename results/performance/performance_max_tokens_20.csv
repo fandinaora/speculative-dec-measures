@@ -1,0 +1,2282 @@
+sample_id,max_tokens,temperature,generated_content,latency_sec_per_token,prefill_time_sec,prompt,throughput_tokens_per_sec,tokens_generated,total_generation_time_sec
+0,20,0.0,"```python
+return sum(lst[i] for i in range(1, len(lst), 2",0.1550501,0.15357099999999999,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+def add(lst):
+    """"""Given a non-empty list of integers lst. add the even elements that are at odd indices..
+
+
+    Examples:
+        add([4, 2, 6, 7]) ==> 2 
+    """"""
+
+
+Complete the function: 
+",6.449528249256208,20,3.101002
+1,20,0.0,"def parse_music(music_string: str) -> List[int]:
+    return [4 if note ==",0.14636714999999997,0.156987,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+from typing import List
+
+
+def parse_music(music_string: str) -> List[int]:
+    """""" Input to this function is a string representing musical notes in a special ASCII format.
+    Your task is to parse this string and return list of integers corresponding to how many beats does each
+    not last.
+
+    Here is a legend:
+    'o' - whole note, lasts four beats
+    'o|' - half note, lasts two beats
+    '.|' - quater note, lasts one beat
+
+    >>> parse_music('o o| .| o| o| .| .| .| .| o o')
+    [4, 2, 1, 2, 2, 1, 1, 1, 1, 4, 4]
+    """"""
+
+
+Complete the function: 
+",6.832134122991396,20,2.927343
+2,20,0.0,number - int(number),0.13085633333333335,0.155748,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+
+def truncate_number(number: float) -> float:
+    """""" Given a positive floating point number, it can be decomposed into
+    and integer part (largest integer smaller than given number) and decimals
+    (leftover part always smaller than 1).
+
+    Return the decimal part of the number.
+    >>> truncate_number(3.5)
+    0.5
+    """"""
+
+
+Complete the function: 
+",7.6419686730230865,6,0.785138
+3,20,0.0,"def fibfib(n: int):
+    if n == 0:
+        return 0
+   ",0.14621289999999998,0.156579,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+
+def fibfib(n: int):
+    """"""The FibFib number sequence is a sequence similar to the Fibbonacci sequnece that's defined as follows:
+    fibfib(0) == 0
+    fibfib(1) == 0
+    fibfib(2) == 1
+    fibfib(n) == fibfib(n-1) + fibfib(n-2) + fibfib(n-3).
+    Please write a function to efficiently compute the n-th element of the fibfib number sequence.
+    >>> fibfib(1)
+    0
+    >>> fibfib(5)
+    4
+    >>> fibfib(8)
+    24
+    """"""
+
+
+Complete the function: 
+",6.83934180910166,20,2.924258
+4,20,0.0,"```python
+count = 0
+for i in range(n):
+    if i % 1",0.14337945,0.154482,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+
+def fizz_buzz(n: int):
+    """"""Return the number of times the digit 7 appears in integers less than n which are divisible by 11 or 13.
+    >>> fizz_buzz(50)
+    0
+    >>> fizz_buzz(78)
+    2
+    >>> fizz_buzz(79)
+    3
+    """"""
+
+
+Complete the function: 
+",6.974500181162643,20,2.8675889999999997
+5,20,0.0,"def fib4(n: int):
+    if n == 0:
+        return 0
+   ",0.14734239999999998,0.156689,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+
+def fib4(n: int):
+    """"""The Fib4 number sequence is a sequence similar to the Fibbonacci sequnece that's defined as follows:
+    fib4(0) -> 0
+    fib4(1) -> 0
+    fib4(2) -> 2
+    fib4(3) -> 0
+    fib4(n) -> fib4(n-1) + fib4(n-2) + fib4(n-3) + fib4(n-4).
+    Please write a function to efficiently compute the n-th element of the fib4 number sequence.  Do not use recursion.
+    >>> fib4(5)
+    4
+    >>> fib4(6)
+    8
+    >>> fib4(7)
+    14
+    """"""
+
+
+Complete the function: 
+",6.786912660578354,20,2.946848
+6,20,0.0,return [s for s in strings if substring in s],0.14494884615384615,0.159203,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+from typing import List
+
+
+def filter_by_substring(strings: List[str], substring: str) -> List[str]:
+    """""" Filter an input list of strings only for ones that contain given substring
+    >>> filter_by_substring([], 'a')
+    []
+    >>> filter_by_substring(['abc', 'bacd', 'cde', 'array'], 'a')
+    ['abc', 'bacd', 'array']
+    """"""
+
+
+Complete the function: 
+",6.898985583773586,13,1.884335
+7,20,0.0,"```python
+return [sorted(l[i] for i in range(0, len(l), ",0.15142185,0.157622,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+
+def sort_even(l: list):
+    """"""This function takes a list l and returns a list l' such that
+    l' is identical to l in the odd indicies, while its values at the even indicies are equal
+    to the values of the even indicies of l, but sorted.
+    >>> sort_even([1, 2, 3])
+    [1, 2, 3]
+    >>> sort_even([5, 6, 3, 4])
+    [3, 6, 5, 4]
+    """"""
+
+
+Complete the function: 
+",6.604066718244428,20,3.028437
+8,20,0.0,"def vowels_count(s):
+    count = 0
+    s = s.lower()
+    for char",0.15619455,0.164182,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+FIX = """"""
+Add more test cases.
+""""""
+
+def vowels_count(s):
+    """"""Write a function vowels_count which takes a string representing
+    a word as input and returns the number of vowels in the string.
+    Vowels in this case are 'a', 'e', 'i', 'o', 'u'. Here, 'y' is also a
+    vowel, but only when it is at the end of the given word.
+
+    Example:
+    >>> vowels_count(""abcde"")
+    2
+    >>> vowels_count(""ACEDY"")
+    3
+    """"""
+
+
+Complete the function: 
+",6.402272038300953,20,3.123891
+9,20,0.0,return max(l),0.1348638,1.6081800000000002,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+
+def max_element(l: list):
+    """"""Return maximum element in the list.
+    >>> max_element([1, 2, 3])
+    3
+    >>> max_element([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])
+    123
+    """"""
+
+
+Complete the function: 
+",7.414888205730522,5,0.674319
+10,20,0.0,"def starts_one_ends(n):
+    if n == 1:
+        return 1
+    return",0.16438395,1.3498610000000002,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+def starts_one_ends(n):
+    """"""
+    Given a positive integer n, return the count of the numbers of n-digit
+    positive integers that start or end with 1.
+    """"""
+
+
+Complete the function: 
+",6.083318961492287,20,3.2876790000000002
+11,20,0.0,"def decimal_to_binary(decimal):
+    binary = bin(decimal)[2:]
+    return f""db{",0.1846296,0.182203,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+def decimal_to_binary(decimal):
+    """"""You will be given a number in decimal form and your task is to convert it to
+    binary format. The function should return a string, with each character representing a binary
+    number. Each character in the string will be '0' or '1'.
+
+    There will be an extra couple of characters 'db' at the beginning and at the end of the string.
+    The extra characters are there to help with the format.
+
+    Examples:
+    decimal_to_binary(15)   # returns ""db1111db""
+    decimal_to_binary(32)   # returns ""db100000db""
+    """"""
+
+
+Complete the function: 
+",5.416249615446277,20,3.6925920000000003
+12,20,0.0,"def strange_sort_list(lst):
+    sorted_lst = sorted(lst)
+    result = []
+    while sorted",0.2005012,0.21384,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+def strange_sort_list(lst):
+    '''
+    Given list of integers, return list in strange order.
+    Strange sorting, is when you start with the minimum value,
+    then maximum of the remaining integers, then minimum and so on.
+
+    Examples:
+    strange_sort_list([1, 2, 3, 4]) == [1, 4, 2, 3]
+    strange_sort_list([5, 5, 5, 5]) == [5, 5, 5, 5]
+    strange_sort_list([]) == []
+    '''
+
+
+Complete the function: 
+",4.9875013216878505,20,4.010024
+13,20,0.0,"def next_smallest(lst):
+    unique_elements = sorted(set(lst))
+    if len(unique_elements)",0.19722725,0.204327,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+def next_smallest(lst):
+    """"""
+    You are given a list of integers.
+    Write a function next_smallest() that returns the 2nd smallest element of the list.
+    Return None if there is no such element.
+    
+    next_smallest([1, 2, 3, 4, 5]) == 2
+    next_smallest([5, 1, 4, 3, 2]) == 2
+    next_smallest([]) == None
+    next_smallest([1, 1]) == None
+    """"""
+
+
+Complete the function: 
+",5.070293278438958,20,3.944545
+14,20,0.0,"def will_it_fly(q, w):
+    return q == q[::-1] and sum(q",0.20572325,0.21110900000000002,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+def will_it_fly(q,w):
+    '''
+    Write a function that returns True if the object q will fly, and False otherwise.
+    The object q will fly if it's balanced (it is a palindromic list) and the sum of its elements is less than or equal the maximum possible weight w.
+
+    Example:
+    will_it_fly([1, 2], 5) ➞ False 
+    # 1+2 is less than the maximum possible weight, but it's unbalanced.
+
+    will_it_fly([3, 2, 3], 1) ➞ False
+    # it's balanced, but 3+2+3 is more than the maximum possible weight.
+
+    will_it_fly([3, 2, 3], 9) ➞ True
+    # 3+2+3 is less than the maximum possible weight, and it's balanced.
+
+    will_it_fly([3], 5) ➞ True
+    # 3 is less than the maximum possible weight, and it's balanced.
+    '''
+
+
+Complete the function: 
+",4.86089929067327,20,4.114465
+15,20,0.0,s.split(),0.15853375,0.218355,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+def words_string(s):
+    """"""
+    You will be given a string of words separated by commas or spaces. Your task is
+    to split the string into words and return an array of the words.
+    
+    For example:
+    words_string(""Hi, my name is John"") == [""Hi"", ""my"", ""name"", ""is"", ""John""]
+    words_string(""One, two, three, four, five, six"") == [""One"", ""two"", ""three"", ""four"", ""five"", ""six""]
+    """"""
+
+
+Complete the function: 
+",6.307805120360807,4,0.634135
+16,20,0.0,"def make_a_pile(n):
+    levels = []
+    current_stones = n
+    for",0.22066955,2.177466,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+def make_a_pile(n):
+    """"""
+    Given a positive integer n, you have to make a pile of n levels of stones.
+    The first level has n stones.
+    The number of stones in the next level is:
+        - the next odd number if n is odd.
+        - the next even number if n is even.
+    Return the number of stones in each level in a list, where element at index
+    i represents the number of stones in the level (i+1).
+
+    Examples:
+    >>> make_a_pile(3)
+    [3, 5, 7]
+    """"""
+
+
+Complete the function: 
+",4.53166284156559,20,4.413391
+17,20,0.0,"def circular_shift(x, shift):
+    s = str(x)
+    n = len(s)
+   ",0.2085057,1.627686,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+def circular_shift(x, shift):
+    """"""Circular shift the digits of the integer x, shift the digits right by shift
+    and return the result as a string.
+    If shift > number of digits, return digits reversed.
+    >>> circular_shift(12, 1)
+    ""21""
+    >>> circular_shift(12, 2)
+    ""12""
+    """"""
+
+
+Complete the function: 
+",4.796031955001711,20,4.170114
+18,20,0.0,"```python
+result = []
+current_max = numbers[0]
+for number in numbers:
+    if",0.19893059999999999,0.208459,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+from typing import List, Tuple
+
+
+def rolling_max(numbers: List[int]) -> List[int]:
+    """""" From a given list of integers, generate a list of rolling maximum element found until given moment
+    in the sequence.
+    >>> rolling_max([1, 2, 3, 2, 3, 4, 2])
+    [1, 2, 3, 3, 3, 4, 4]
+    """"""
+
+
+Complete the function: 
+",5.026878720518613,20,3.978612
+19,20,0.0,return [s for s in strings if s.startswith(prefix)],0.19574461538461538,1.693128,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+from typing import List
+
+
+def filter_by_prefix(strings: List[str], prefix: str) -> List[str]:
+    """""" Filter an input list of strings only for ones that start with a given prefix.
+    >>> filter_by_prefix([], 'a')
+    []
+    >>> filter_by_prefix(['abc', 'bcd', 'cde', 'array'], 'a')
+    ['abc', 'array']
+    """"""
+
+
+Complete the function: 
+",5.108697360768349,13,2.54468
+20,20,0.0,return len(set(string.lower())),0.18221728571428572,1.5035209999999999,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+
+def count_distinct_characters(string: str) -> int:
+    """""" Given a string, find out how many distinct characters (regardless of case) does it consist of
+    >>> count_distinct_characters('xyzXYZ')
+    3
+    >>> count_distinct_characters('Jerry')
+    4
+    """"""
+
+
+Complete the function: 
+",5.487953549961153,7,1.275521
+21,20,0.0,"def count_up_to(n):
+    def is_prime(num):
+        if num < 2:
+           ",0.1950666,0.212324,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+def count_up_to(n):
+    """"""Implement a function that takes an non-negative integer and returns an array of the first n
+    integers that are prime numbers and less than n.
+    for example:
+    count_up_to(5) => [2,3]
+    count_up_to(11) => [2,3,5,7]
+    count_up_to(0) => []
+    count_up_to(20) => [2,3,5,7,11,13,17,19]
+    count_up_to(1) => []
+    count_up_to(18) => [2,3,5,7,11,13,17]
+    """"""
+
+
+Complete the function: 
+",5.126454246908492,20,3.901332
+22,20,0.0,"```python
+i = 0
+n = len(nums)
+min_sum = float('inf')
+",0.19388185000000002,1.6172739999999999,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+def minSubArraySum(nums):
+    """"""
+    Given an array of integers nums, find the minimum sum of any non-empty sub-array
+    of nums.
+    Example
+    minSubArraySum([2, 3, 4, 1, 2, 4]) == 1
+    minSubArraySum([-1, -2, -3]) == -6
+    """"""
+
+
+Complete the function: 
+",5.157780369848957,20,3.877637
+23,20,0.0,"def is_bored(S):
+    count = 0
+    sentences = S.split('. ') +",0.19959719999999997,0.215695,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+def is_bored(S):
+    """"""
+    You'll be given a string of words, and your task is to count the number
+    of boredoms. A boredom is a sentence that starts with the word ""I"".
+    Sentences are delimited by '.', '?' or '!'.
+   
+    For example:
+    >>> is_bored(""Hello world"")
+    0
+    >>> is_bored(""The sky is blue. The sun is shining. I love this weather"")
+    1
+    """"""
+
+
+Complete the function: 
+",5.010090321908324,20,3.991944
+24,20,0.0,''.join(strings),0.161403,1.323388,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+from typing import List
+
+
+def concatenate(strings: List[str]) -> str:
+    """""" Concatenate list of strings into a single string
+    >>> concatenate([])
+    ''
+    >>> concatenate(['a', 'b', 'c'])
+    'abc'
+    """"""
+
+
+Complete the function: 
+",6.195671703747761,5,0.807015
+25,20,0.0,"```python
+if n > m:
+    -1
+else:
+    avg = round((n",0.19741640000000002,2.187341,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+def rounded_avg(n, m):
+    """"""You are given two positive integers n and m, and your task is to compute the
+    average of the integers from n through m (including n and m). 
+    Round the answer to the nearest integer and convert that to binary.
+    If n is greater than m, return -1.
+    Example:
+    rounded_avg(1, 5) => ""0b11""
+    rounded_avg(7, 5) => -1
+    rounded_avg(10, 20) => ""0b1111""
+    rounded_avg(20, 33) => ""0b11010""
+    """"""
+
+
+Complete the function: 
+",5.065435293116479,20,3.948328
+26,20,0.0,"```python
+return n * (n + 1) // 2
+```",0.19698927777777778,0.21882400000000002,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+
+def sum_to_n(n: int):
+    """"""sum_to_n is a function that sums numbers from 1 to n.
+    >>> sum_to_n(30)
+    465
+    >>> sum_to_n(100)
+    5050
+    >>> sum_to_n(5)
+    15
+    >>> sum_to_n(10)
+    55
+    >>> sum_to_n(1)
+    1
+    """"""
+
+
+Complete the function: 
+",5.076418428865418,18,3.545807
+27,20,0.0,"def is_multiply_prime(a):
+    def is_prime(n):
+        if n < 2:
+           ",0.19313344999999998,1.579002,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+def is_multiply_prime(a):
+    """"""Write a function that returns true if the given number is the multiplication of 3 prime numbers
+    and false otherwise.
+    Knowing that (a) is less then 100. 
+    Example:
+    is_multiply_prime(30) == True
+    30 = 2 * 3 * 5
+    """"""
+
+
+Complete the function: 
+",5.177766979257089,20,3.862669
+28,20,0.0,"def string_xor(a: str, b: str) -> str:
+    result = ''.join(str",0.19594565,1.5754970000000001,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+from typing import List
+
+
+def string_xor(a: str, b: str) -> str:
+    """""" Input are two strings a and b consisting only of 1s and 0s.
+    Perform binary XOR on these inputs and return result also as a string.
+    >>> string_xor('010', '110')
+    '100'
+    """"""
+
+
+Complete the function: 
+",5.103455983840417,20,3.918913
+29,20,0.0,"```python
+''.join([char for char in text if char not in 'aeiouAEIO",0.20430374999999998,0.25223,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+
+def remove_vowels(text):
+    """"""
+    remove_vowels is a function that takes string and returns string without vowels.
+    >>> remove_vowels('')
+    ''
+    >>> remove_vowels(""abcdef\nghijklm"")
+    'bcdf\nghjklm'
+    >>> remove_vowels('abcdef')
+    'bcdf'
+    >>> remove_vowels('aaaaa')
+    ''
+    >>> remove_vowels('aaBAA')
+    'B'
+    >>> remove_vowels('zbcd')
+    'zbcd'
+    """"""
+
+
+Complete the function: 
+",4.894672760534254,20,4.086075
+30,20,0.0,"def count_nums(arr):
+    return sum([1 for x in arr if sum(int(d) *",0.20727890000000002,2.081442,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+def count_nums(arr):
+    """"""
+    Write a function count_nums which takes an array of integers and returns
+    the number of elements which has a sum of digits > 0.
+    If a number is negative, then its first signed digit will be negative:
+    e.g. -123 has signed digits -1, 2, and 3.
+    >>> count_nums([]) == 0
+    >>> count_nums([-1, 11, -11]) == 1
+    >>> count_nums([1, 1, 2]) == 3
+    """"""
+
+
+Complete the function: 
+",4.824417728963247,20,4.145578
+31,20,0.0,"def prime_length(string):
+    length = len(string)
+    if length < 2:
+        return",0.21689005000000003,0.211395,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+def prime_length(string):
+    """"""Write a function that takes a string and returns True if the string
+    length is a prime number or False otherwise
+    Examples
+    prime_length('Hello') == True
+    prime_length('abcdcba') == True
+    prime_length('kittens') == True
+    prime_length('orange') == False
+    """"""
+
+
+Complete the function: 
+",4.6106310547671505,20,4.337801000000001
+32,20,0.0,"def select_words(s, n):
+    words = s.split()
+    result = []
+    for word",0.24726954999999998,0.239461,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+def select_words(s, n):
+    """"""Given a string s and a natural number n, you have been tasked to implement 
+    a function that returns a list of all words from string s that contain exactly 
+    n consonants, in order these words appear in the string s.
+    If the string s is empty then the function should return an empty list.
+    Note: you may assume the input string contains only letters and spaces.
+    Examples:
+    select_words(""Mary had a little lamb"", 4) ==> [""little""]
+    select_words(""Mary had a little lamb"", 3) ==> [""Mary"", ""lamb""]
+    select_words(""simple white space"", 2) ==> []
+    select_words(""Hello world"", 4) ==> [""world""]
+    select_words(""Uncle sam"", 3) ==> [""Uncle""]
+    """"""
+
+
+Complete the function: 
+",4.04416961166468,20,4.945391
+33,20,0.0,"def change_base(x: int, base: int):
+    result = ''
+    while x > ",0.2003336,1.711392,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+
+def change_base(x: int, base: int):
+    """"""Change numerical base of input number x to base.
+    return string representation after the conversion.
+    base numbers are less than 10.
+    >>> change_base(8, 3)
+    '22'
+    >>> change_base(8, 2)
+    '1000'
+    >>> change_base(7, 2)
+    '111'
+    """"""
+
+
+Complete the function: 
+",4.991673887954891,20,4.006672
+34,20,0.0,"def by_length(arr):
+    result = [str(num) for num in arr if 1 <=",0.22653000000000004,0.232183,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+def by_length(arr):
+    """"""
+    Given an array of integers, sort the integers that are between 1 and 9 inclusive,
+    reverse the resulting array, and then replace each digit by its corresponding name from
+    ""One"", ""Two"", ""Three"", ""Four"", ""Five"", ""Six"", ""Seven"", ""Eight"", ""Nine"".
+
+    For example:
+      arr = [2, 1, 1, 4, 5, 8, 2, 3]   
+            -> sort arr -> [1, 1, 2, 2, 3, 4, 5, 8] 
+            -> reverse arr -> [8, 5, 4, 3, 2, 2, 1, 1]
+      return [""Eight"", ""Five"", ""Four"", ""Three"", ""Two"", ""Two"", ""One"", ""One""]
+    
+      If the array is empty, return an empty array:
+      arr = []
+      return []
+    
+      If the array has any strange number ignore it:
+      arr = [1, -1 , 55] 
+            -> sort arr -> [-1, 1, 55]
+            -> reverse arr -> [55, 1, -1]
+      return = ['One']
+    """"""
+
+
+Complete the function: 
+",4.4144263452964285,20,4.530600000000001
+35,20,0.0,"```python
+l[::3] = sorted(l[::3])
+```",0.20489423529411765,2.2026060000000003,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+
+def sort_third(l: list):
+    """"""This function takes a list l and returns a list l' such that
+    l' is identical to l in the indicies that are not divisible by three, while its values at the indicies that are divisible by three are equal
+    to the values of the corresponding indicies of l, but sorted.
+    >>> sort_third([1, 2, 3])
+    [1, 2, 3]
+    >>> sort_third([5, 6, 3, 4, 8, 9, 2])
+    [2, 6, 3, 4, 8, 9, 5]
+    """"""
+
+
+Complete the function: 
+",4.880566788833953,17,3.4832020000000004
+36,20,0.0,"return ' '.join(map(str, range(n + 1)))",0.20796585714285715,0.22627,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+
+def string_sequence(n: int) -> str:
+    """""" Return a string containing space-delimited numbers starting from 0 upto n inclusive.
+    >>> string_sequence(0)
+    '0'
+    >>> string_sequence(5)
+    '0 1 2 3 4 5'
+    """"""
+
+
+Complete the function: 
+",4.808481612022852,14,2.9115219999999997
+37,20,0.0,"def flip_case(string: str) -> str:
+    return ''.join([char.lower() if char",0.21395740000000002,0.228766,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+
+def flip_case(string: str) -> str:
+    """""" For a given string, flip lowercase characters to uppercase and uppercase to lowercase.
+    >>> flip_case('Hello')
+    'hELLO'
+    """"""
+
+
+Complete the function: 
+",4.673827593717254,20,4.279148
+38,20,0.0,"return [string[:i] for i in range(1, len(string)+1)]",0.21815705263157897,0.22516,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+from typing import List
+
+
+def all_prefixes(string: str) -> List[str]:
+    """""" Return list of all prefixes from shortest to longest of the input string
+    >>> all_prefixes('abc')
+    ['a', 'ab', 'abc']
+    """"""
+
+
+Complete the function: 
+",4.583853640930821,19,4.144984
+39,20,0.0,"return [value for value in values if isinstance(value, int)]",0.20989421428571428,1.743868,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+from typing import List, Any
+
+
+def filter_integers(values: List[Any]) -> List[int]:
+    """""" Filter given list of any python values only for integers
+    >>> filter_integers(['a', 3.14, 5])
+    [5]
+    >>> filter_integers([1, 2, 3, 'abc', {}, []])
+    [1, 2, 3]
+    """"""
+
+
+Complete the function: 
+",4.764304739904694,14,2.938519
+40,20,0.0,"def sort_array(arr):
+    def count_ones(n):
+        return bin(n).count('1",0.21942140000000002,0.223351,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+def sort_array(arr):
+    """"""
+    In this Kata, you have to sort an array of non-negative integers according to
+    number of ones in their binary representation in ascending order.
+    For similar number of ones, sort based on decimal value.
+
+    It must be implemented like this:
+    >>> sort_array([1, 5, 2, 3, 4]) == [1, 2, 3, 4, 5]
+    >>> sort_array([-2, -3, -4, -5, -6]) == [-6, -5, -4, -3, -2]
+    >>> sort_array([1, 0, 2, 3, 4]) [0, 1, 2, 3, 4]
+    """"""
+
+
+Complete the function: 
+",4.557440614270075,20,4.388428
+41,20,0.0,return all(x < t for x in l),0.18453345454545453,0.206709,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+
+def below_threshold(l: list, t: int):
+    """"""Return True if all numbers in the list l are below threshold t.
+    >>> below_threshold([1, 2, 4, 10], 100)
+    True
+    >>> below_threshold([1, 20, 4, 10], 5)
+    False
+    """"""
+
+
+Complete the function: 
+",5.419071584950352,11,2.029868
+42,20,0.0,"def get_closest_vowel(word):
+    vowels = ""aeiouAEIOU""
+    for",0.19391375,0.203568,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+def get_closest_vowel(word):
+    """"""You are given a word. Your task is to find the closest vowel that stands between 
+    two consonants from the right side of the word (case sensitive).
+    
+    Vowels in the beginning and ending doesn't count. Return empty string if you didn't
+    find any vowel met the above condition. 
+
+    You may assume that the given string contains English letter only.
+
+    Example:
+    get_closest_vowel(""yogurt"") ==> ""u""
+    get_closest_vowel(""FULL"") ==> ""U""
+    get_closest_vowel(""quick"") ==> """"
+    get_closest_vowel(""ab"") ==> """"
+    """"""
+
+
+Complete the function: 
+",5.156931883375986,20,3.878275
+43,20,0.0,"```python
+return any(a + b == 0 for i, a in enumerate(l) for",0.1934795,0.2039,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+
+def pairs_sum_to_zero(l):
+    """"""
+    pairs_sum_to_zero takes a list of integers as an input.
+    it returns True if there are two distinct elements in the list that
+    sum to zero, and False otherwise.
+    >>> pairs_sum_to_zero([1, 3, 5, 0])
+    False
+    >>> pairs_sum_to_zero([1, 3, -2, 1])
+    False
+    >>> pairs_sum_to_zero([1, 2, 3, 7])
+    False
+    >>> pairs_sum_to_zero([2, 4, -5, 3, 5, 7])
+    True
+    >>> pairs_sum_to_zero([1])
+    False
+    """"""
+
+
+Complete the function: 
+",5.16850622417362,20,3.86959
+44,20,0.0,"def compare_one(a, b):
+    if isinstance(a, str):
+        a = float(a.replace",0.19249840000000001,0.206334,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+def compare_one(a, b):
+    """"""
+    Create a function that takes integers, floats, or strings representing
+    real numbers, and returns the larger variable in its given variable type.
+    Return None if the values are equal.
+    Note: If a real number is represented as a string, the floating point might be . or ,
+
+    compare_one(1, 2.5) ➞ 2.5
+    compare_one(1, ""2,3"") ➞ ""2,3""
+    compare_one(""5,1"", ""6"") ➞ ""6""
+    compare_one(""1"", 1) ➞ None
+    """"""
+
+
+Complete the function: 
+",5.194848372765696,20,3.849968
+45,20,0.0,"```python
+return sum(ord(c) for c in s if c.isupper())
+```",0.19201752631578947,1.795901,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+def digitSum(s):
+    """"""Task
+    Write a function that takes a string as input and returns the sum of the upper characters only'
+    ASCII codes.
+
+    Examples:
+        digitSum("""") => 0
+        digitSum(""abAB"") => 131
+        digitSum(""abcCd"") => 67
+        digitSum(""helloE"") => 69
+        digitSum(""woArBld"") => 131
+        digitSum(""aAaaaXa"") => 153
+    """"""
+
+
+Complete the function: 
+",5.207857944984736,19,3.648333
+46,20,0.0,"def exchange(lst1, lst2):
+    for i in range(len(lst1)):
+        if lst",0.19483065,0.213411,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+def exchange(lst1, lst2):
+    """"""In this problem, you will implement a function that takes two lists of numbers,
+    and determines whether it is possible to perform an exchange of elements
+    between them to make lst1 a list of only even numbers.
+    There is no limit on the number of exchanged elements between lst1 and lst2.
+    If it is possible to exchange elements between the lst1 and lst2 to make
+    all the elements of lst1 to be even, return ""YES"".
+    Otherwise, return ""NO"".
+    For example:
+    exchange([1, 2, 3, 4], [1, 2, 3, 4]) => ""YES""
+    exchange([1, 2, 3, 4], [1, 5, 3, 4]) => ""NO""
+    It is assumed that the input lists will be non-empty.
+    """"""
+
+
+Complete the function: 
+",5.13266264830508,20,3.896613
+47,20,0.0,"def separate_paren_groups(paren_string: str) -> List[str]:
+    stack = []
+    result",0.19452935,0.205329,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+from typing import List
+
+
+def separate_paren_groups(paren_string: str) -> List[str]:
+    """""" Input to this function is a string containing multiple groups of nested parentheses. Your goal is to
+    separate those group into separate strings and return the list of those.
+    Separate groups are balanced (each open brace is properly closed) and not nested within each other
+    Ignore any spaces in the input string.
+    >>> separate_paren_groups('( ) (( )) (( )( ))')
+    ['()', '(())', '(()())']
+    """"""
+
+
+Complete the function: 
+",5.140612457708825,20,3.890587
+48,20,0.0,"```python
+return txt and txt[-1].isalpha() and not txt[-2:].isspace",0.19514415,0.20765199999999998,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+def check_if_last_char_is_a_letter(txt):
+    '''
+    Create a function that returns True if the last character
+    of a given string is an alphabetical character and is not
+    a part of a word, and False otherwise.
+    Note: ""word"" is a group of characters separated by space.
+
+    Examples:
+    check_if_last_char_is_a_letter(""apple pie"") ➞ False
+    check_if_last_char_is_a_letter(""apple pi e"") ➞ True
+    check_if_last_char_is_a_letter(""apple pi e "") ➞ False
+    check_if_last_char_is_a_letter("""") ➞ False 
+    '''
+
+
+Complete the function: 
+",5.124417001483263,20,3.9028829999999997
+49,20,0.0,"```python
+return sum([int(x)**2 for x in lst])
+```",0.2065645882352941,0.204451,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+
+def sum_squares(lst):
+    """"""You are given a list of numbers.
+    You need to return the sum of squared numbers in the given list,
+    round each element in the list to the upper int(Ceiling) first.
+    Examples:
+    For lst = [1,2,3] the output should be 14
+    For lst = [1,4,9] the output should be 98
+    For lst = [1,3,5,7] the output should be 84
+    For lst = [1.4,4.2,0] the output should be 29
+    For lst = [-2.4,1,1] the output should be 6
+    
+
+    """"""
+
+
+Complete the function: 
+",4.841100832156756,17,3.5115979999999998
+50,20,0.0,"def closest_integer(value):
+    num = float(value)
+    if num > 0:
+        return",0.1938906,2.4415880000000003,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+def closest_integer(value):
+    '''
+    Create a function that takes a value (string) representing a number
+    and returns the closest integer to it. If the number is equidistant
+    from two integers, round it away from zero.
+
+    Examples
+    >>> closest_integer(""10"")
+    10
+    >>> closest_integer(""15.3"")
+    15
+
+    Note:
+    Rounding away from zero means that if the given number is equidistant
+    from two integers, the one you should return is the one that is the
+    farthest from zero. For example closest_integer(""14.5"") should
+    return 15 and closest_integer(""-14.5"") should return -15.
+    '''
+
+
+Complete the function: 
+",5.157547606743185,20,3.877812
+51,20,0.0,"def unique_digits(x):
+    return sorted([num for num in x if all(digit in '",0.19370255,1.924066,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+def unique_digits(x):
+    """"""Given a list of positive integers x. return a sorted list of all 
+    elements that hasn't any even digit.
+
+    Note: Returned list should be sorted in increasing order.
+    
+    For example:
+    >>> unique_digits([15, 33, 1422, 1])
+    [1, 15, 33]
+    >>> unique_digits([152, 323, 1422, 10])
+    []
+    """"""
+
+
+Complete the function: 
+",5.162554648867555,20,3.874051
+52,20,0.0,"```python
+return sorted([i for i in arr if i in sorted(arr, reverse=True)[:",0.2002042,0.203904,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+def maximum(arr, k):
+    """"""
+    Given an array arr of integers and a positive integer k, return a sorted list 
+    of length k with the maximum k numbers in arr.
+
+    Example 1:
+
+        Input: arr = [-3, -4, 5], k = 3
+        Output: [-4, -3, 5]
+
+    Example 2:
+
+        Input: arr = [4, -4, 4], k = 2
+        Output: [4, 4]
+
+    Example 3:
+
+        Input: arr = [-3, 2, 1, 2, -1, -2, 1], k = 1
+        Output: [2]
+
+    Note:
+        1. The length of the array will be in the range of [1, 1000].
+        2. The elements in the array will be in the range of [-1000, 1000].
+        3. 0 <= k <= len(arr)
+    """"""
+
+
+Complete the function: 
+",4.994900206888767,20,4.004084
+53,20,0.0,"def sort_numbers(numbers: str) -> str:
+    num_dict = {'zero': 0,",0.20482545,0.209458,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+from typing import List
+
+
+def sort_numbers(numbers: str) -> str:
+    """""" Input is a space-delimited string of numberals from 'zero' to 'nine'.
+    Valid choices are 'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight' and 'nine'.
+    Return the string with numbers sorted from smallest to largest
+    >>> sort_numbers('three one five')
+    'one three five'
+    """"""
+
+
+Complete the function: 
+",4.882205800109313,20,4.096509
+54,20,0.0,"def median(l: list):
+    l.sort()
+    n = len(l)
+    if n %",0.19446665000000002,1.599492,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+
+def median(l: list):
+    """"""Return median of elements in the list l.
+    >>> median([3, 1, 2, 4, 5])
+    3
+    >>> median([-10, 4, 6, 1000, 10, 20])
+    15.0
+    """"""
+
+
+Complete the function: 
+",5.142269895635061,20,3.889333
+55,20,0.0,"```python
+i = 2
+while i * i <= n:
+    if n % i",0.19556085,1.446476,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+
+def largest_prime_factor(n: int):
+    """"""Return the largest prime factor of n. Assume n > 1 and is not a prime.
+    >>> largest_prime_factor(13195)
+    29
+    >>> largest_prime_factor(2048)
+    2
+    """"""
+
+
+Complete the function: 
+",5.113497921490932,20,3.911217
+56,20,0.0,"def find_zero(xs: list):
+    a = xs[0]
+    b = xs[1",0.19774595,0.20102099999999998,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+import math
+
+
+def poly(xs: list, x: float):
+    """"""
+    Evaluates polynomial with coefficients xs at point x.
+    return xs[0] + xs[1] * x + xs[1] * x^2 + .... xs[n] * x^n
+    """"""
+    return sum([coeff * math.pow(x, i) for i, coeff in enumerate(xs)])
+
+
+def find_zero(xs: list):
+    """""" xs are coefficients of a polynomial.
+    find_zero find x such that poly(x) = 0.
+    find_zero returns only only zero point, even if there are many.
+    Moreover, find_zero only takes list xs having even number of coefficients
+    and largest non zero coefficient as it guarantees
+    a solution.
+    >>> round(find_zero([1, 2]), 2) # f(x) = 1 + 2x
+    -0.5
+    >>> round(find_zero([-6, 11, -6, 1]), 2) # (x - 1) * (x - 2) * (x - 3) = -6 + 11x - 6x^2 + x^3
+    1.0
+    """"""
+
+
+Complete the function: 
+",5.056993581916595,20,3.954919
+57,20,0.0,"def words_in_sentence(sentence):
+    def is_prime(n):
+        if n < 2:
+           ",0.1941598,0.20256800000000003,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+def words_in_sentence(sentence):
+    """"""
+    You are given a string representing a sentence,
+    the sentence contains some words separated by a space,
+    and you have to return a string that contains the words from the original sentence,
+    whose lengths are prime numbers,
+    the order of the words in the new string should be the same as the original one.
+
+    Example 1:
+        Input: sentence = ""This is a test""
+        Output: ""is""
+
+    Example 2:
+        Input: sentence = ""lets go for swimming""
+        Output: ""go for""
+
+    Constraints:
+        * 1 <= len(sentence) <= 100
+        * sentence contains only letters
+    """"""
+
+
+Complete the function: 
+",5.150396735060502,20,3.883196
+58,20,0.0,"def order_by_points(nums):
+    return sorted(nums, key=lambda x: (sum(int(d)",0.19832885000000003,1.767618,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+def order_by_points(nums):
+    """"""
+    Write a function which sorts the given list of integers
+    in ascending order according to the sum of their digits.
+    Note: if there are several items with similar sum of their digits,
+    order them based on their index in original list.
+
+    For example:
+    >>> order_by_points([1, 11, -1, -11, -12]) == [-1, -11, 1, -12, 11]
+    >>> order_by_points([]) == []
+    """"""
+
+
+Complete the function: 
+",5.042130784300922,20,3.966577
+59,20,0.0,"def match_parens(lst):
+    for i in [lst[0]+lst[1],",0.19440854999999999,0.205097,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+def match_parens(lst):
+    '''
+    You are given a list of two strings, both strings consist of open
+    parentheses '(' or close parentheses ')' only.
+    Your job is to check if it is possible to concatenate the two strings in
+    some order, that the resulting string will be good.
+    A string S is considered to be good if and only if all parentheses in S
+    are balanced. For example: the string '(())()' is good, while the string
+    '())' is not.
+    Return 'Yes' if there's a way to make a good string, and return 'No' otherwise.
+
+    Examples:
+    match_parens(['()(', ')']) == 'Yes'
+    match_parens([')', ')']) == 'No'
+    '''
+
+
+Complete the function: 
+",5.143806689572038,20,3.888171
+60,20,0.0,"```python
+return sum(x for i, x in enumerate(lst) if i % 2 ==",0.1952469,1.760004,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+def solution(lst):
+    """"""Given a non-empty list of integers, return the sum of all of the odd elements that are in even positions.
+    
+
+    Examples
+    solution([5, 8, 7, 1]) ==> 12
+    solution([3, 3, 3, 3, 3]) ==> 9
+    solution([30, 13, 24, 321]) ==>0
+    """"""
+
+
+Complete the function: 
+",5.1217202424212624,20,3.904938
+61,20,0.0,"```python
+numbers.sort()
+return (numbers[0], numbers[1])
+```",0.19622044444444445,0.24539599999999998,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+from typing import List, Tuple
+
+
+def find_closest_elements(numbers: List[float]) -> Tuple[float, float]:
+    """""" From a supplied list of numbers (of length at least two) select and return two that are the closest to each
+    other and return them in order (smaller number, larger number).
+    >>> find_closest_elements([1.0, 2.0, 3.0, 4.0, 5.0, 2.2])
+    (2.0, 2.2)
+    >>> find_closest_elements([1.0, 2.0, 3.0, 4.0, 5.0, 2.0])
+    (2.0, 2.0)
+    """"""
+
+
+Complete the function: 
+",5.096308913331038,18,3.531968
+62,20,0.0,"def encode(message):
+    vowels = ""aeiou""
+    result = """"
+    for char in message",0.20504605,0.223385,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+def encode(message):
+    """"""
+    Write a function that takes a message, and encodes in such a 
+    way that it swaps case of all letters, replaces all vowels in 
+    the message with the letter that appears 2 places ahead of that 
+    vowel in the english alphabet. 
+    Assume only letters. 
+    
+    Examples:
+    >>> encode('test')
+    'TGST'
+    >>> encode('This is a message')
+    'tHKS KS C MGSSCGG'
+    """"""
+
+
+Complete the function: 
+",4.876953250257686,20,4.1009210000000005
+63,20,0.0,"def get_row(lst, x):
+    coords = []
+    for i, row in enumerate(lst):
+",0.20551100000000003,3.306884,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+def get_row(lst, x):
+    """"""
+    You are given a 2 dimensional data, as a nested lists,
+    which is similar to matrix, however, unlike matrices,
+    each row may contain a different number of columns.
+    Given lst, and integer x, find integers x in the list,
+    and return list of tuples, [(x1, y1), (x2, y2) ...] such that
+    each tuple is a coordinate - (row, columns), starting with 0.
+    Sort coordinates initially by rows in ascending order.
+    Also, sort coordinates of the row by columns in descending order.
+    
+    Examples:
+    get_row([
+      [1,2,3,4,5,6],
+      [1,2,3,4,1,6],
+      [1,2,3,4,5,1]
+    ], 1) == [(0, 0), (1, 4), (1, 0), (2, 5), (2, 0)]
+    get_row([], 1) == []
+    get_row([[], [1], [1, 2, 3]], 3) == [(2, 2)]
+    """"""
+
+
+Complete the function: 
+",4.865919585812924,20,4.11022
+64,20,0.0,"def cycpattern_check(a, b):
+    for i in range(len(b)):
+        if b in",0.19409205,2.2190749999999997,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+def cycpattern_check(a , b):
+    """"""You are given 2 words. You need to return True if the second word or any of its rotations is a substring in the first word
+    cycpattern_check(""abcd"",""abd"") => False
+    cycpattern_check(""hello"",""ell"") => True
+    cycpattern_check(""whassup"",""psus"") => False
+    cycpattern_check(""abab"",""baa"") => True
+    cycpattern_check(""efef"",""eeff"") => False
+    cycpattern_check(""himenss"",""simen"") => True
+
+    """"""
+
+
+Complete the function: 
+",5.1521945386222665,20,3.881841
+65,20,0.0,return 0.5 * a * h,0.18197719999999998,0.203632,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+
+def triangle_area(a, h):
+    """"""Given length of a side and high return area for a triangle.
+    >>> triangle_area(5, 3)
+    7.5
+    """"""
+
+
+Complete the function: 
+",5.495193903412075,10,1.819772
+66,20,0.0,"def factorize(n: int) -> List[int]:
+    factors = []
+    for i in range",0.200881,2.180459,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+from typing import List
+
+
+def factorize(n: int) -> List[int]:
+    """""" Return list of prime factors of given integer in the order from smallest to largest.
+    Each of the factors should be listed number of times corresponding to how many times it appeares in factorization.
+    Input number should be equal to the product of all factors
+    >>> factorize(8)
+    [2, 2, 2]
+    >>> factorize(25)
+    [5, 5]
+    >>> factorize(70)
+    [2, 5, 7]
+    """"""
+
+
+Complete the function: 
+",4.978071594625674,20,4.01762
+67,20,0.0,"def prime_fib(n: int):
+    def is_prime(num):
+        if num < 2",0.19348985,1.624585,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+
+def prime_fib(n: int):
+    """"""
+    prime_fib returns n-th number that is a Fibonacci number and it's also prime.
+    >>> prime_fib(1)
+    2
+    >>> prime_fib(2)
+    3
+    >>> prime_fib(3)
+    5
+    >>> prime_fib(4)
+    13
+    >>> prime_fib(5)
+    89
+    """"""
+
+
+Complete the function: 
+",5.16822975468739,20,3.869797
+68,20,0.0,"```python
+return sorted(set(l1) & set(l2))
+```",0.2030966875,0.21466,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+
+def common(l1: list, l2: list):
+    """"""Return sorted unique common elements for two lists.
+    >>> common([1, 4, 3, 34, 653, 2, 5], [5, 7, 1, 5, 9, 653, 121])
+    [1, 5, 653]
+    >>> common([5, 3, 2, 8], [3, 2])
+    [2, 3]
+
+    """"""
+
+
+Complete the function: 
+",4.923763219919577,16,3.249547
+69,20,0.0,"```python
+min_val = min(numbers)
+max_val = max(numbers)
+return [(x - min",0.2032775,1.979286,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+from typing import List
+
+
+def rescale_to_unit(numbers: List[float]) -> List[float]:
+    """""" Given list of numbers (of at least two elements), apply a linear transform to that list,
+    such that the smallest number will become 0 and the largest will become 1
+    >>> rescale_to_unit([1.0, 2.0, 3.0, 4.0, 5.0])
+    [0.0, 0.25, 0.5, 0.75, 1.0]
+    """"""
+
+
+Complete the function: 
+",4.919383601234765,20,4.06555
+70,20,0.0,"def f(n):
+    def factorial(x):
+        if x == 0:
+            return 1",0.1942233,2.181242,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+def f(n):
+    """""" Implement the function f that takes n as a parameter,
+    and returns a list of size n, such that the value of the element at index i is the factorial of i if i is even
+    or the sum of numbers from 1 to i otherwise.
+    i starts from 1.
+    the factorial of i is the multiplication of the numbers from 1 to i (1 * 2 * ... * i).
+    Example:
+    f(5) == [1, 2, 6, 24, 15]
+    """"""
+
+
+Complete the function: 
+",5.148712847531681,20,3.8844659999999998
+71,20,0.0,"```python
+return x == n ** int(x ** 0.5) ** 2
+",0.19728395,0.20346199999999998,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+def is_simple_power(x, n):
+    """"""Your task is to write a function that returns true if a number x is a simple
+    power of n and false in other cases.
+    x is a simple power of n if n**int=x
+    For example:
+    is_simple_power(1, 4) => true
+    is_simple_power(2, 2) => true
+    is_simple_power(8, 2) => true
+    is_simple_power(3, 2) => false
+    is_simple_power(3, 1) => false
+    is_simple_power(5, 3) => false
+    """"""
+
+
+Complete the function: 
+",5.068836060916258,20,3.945679
+72,20,0.0,"def histogram(test):
+    count = {}
+    max_count = 0
+    for letter in test",0.1949572,0.207211,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+def histogram(test):
+    """"""Given a string representing a space separated lowercase letters, return a dictionary
+    of the letter with the most repetition and containing the corresponding count.
+    If several letters have the same occurrence, return all of them.
+    
+    Example:
+    histogram('a b c') == {'a': 1, 'b': 1, 'c': 1}
+    histogram('a b b a') == {'a': 2, 'b': 2}
+    histogram('a b c a b') == {'a': 2, 'b': 2}
+    histogram('b b b b a') == {'b': 4}
+    histogram('') == {}
+
+    """"""
+
+
+Complete the function: 
+",5.129330950588129,20,3.8991439999999997
+73,20,0.0,"def choose_num(x, y):
+    if x > y:
+        return -1
+    for",0.1921911,1.7820809999999998,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+def choose_num(x, y):
+    """"""This function takes two positive numbers x and y and returns the
+    biggest even integer number that is in the range [x, y] inclusive. If 
+    there's no such number, then the function should return -1.
+
+    For example:
+    choose_num(12, 15) = 14
+    choose_num(13, 12) = -1
+    """"""
+
+
+Complete the function: 
+",5.203154568551821,20,3.8438220000000003
+74,20,0.0,"```python
+return sum(1 for i in range(0, len(s), 2)",0.19765825,0.21893100000000001,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+def count_upper(s):
+    """"""
+    Given a string s, count the number of uppercase vowels in even indices.
+    
+    For example:
+    count_upper('aBCdEf') returns 1
+    count_upper('abcdefg') returns 0
+    count_upper('dBBE') returns 0
+    """"""
+
+
+Complete the function: 
+",5.0592373452663875,20,3.953165
+75,20,0.0,"stack = []
+for bracket in brackets:
+    if bracket == ""<"":
+        stack.append(bracket)
+",0.1926142,0.208665,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+
+def correct_bracketing(brackets: str):
+    """""" brackets is a string of ""<"" and "">"".
+    return True if every opening bracket has a corresponding closing bracket.
+
+    >>> correct_bracketing(""<"")
+    False
+    >>> correct_bracketing(""<>"")
+    True
+    >>> correct_bracketing(""<<><>>"")
+    True
+    >>> correct_bracketing(""><<>"")
+    False
+    """"""
+
+
+Complete the function: 
+",5.1917252206742805,20,3.852284
+76,20,0.0,"def special_factorial(n):
+    result = 1
+    for i in range(1,",0.21032114999999998,0.204778,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+def special_factorial(n):
+    """"""The Brazilian factorial is defined as:
+    brazilian_factorial(n) = n! * (n-1)! * (n-2)! * ... * 1!
+    where n > 0
+
+    For example:
+    >>> special_factorial(4)
+    288
+
+    The function will receive an integer as input and should return the special
+    factorial of this integer.
+    """"""
+
+
+Complete the function: 
+",4.754633568711468,20,4.206423
+77,20,0.0,n,0.107657,0.219602,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+
+def car_race_collision(n: int):
+    """"""
+    Imagine a road that's a perfectly straight infinitely long line.
+    n cars are driving left to right;  simultaneously, a different set of n cars
+    are driving right to left.   The two sets of cars start out being very far from
+    each other.  All cars move in the same speed.  Two cars are said to collide
+    when a car that's moving left to right hits a car that's moving right to left.
+    However, the cars are infinitely sturdy and strong; as a result, they continue moving
+    in their trajectory as if they did not collide.
+
+    This function outputs the number of such collisions.
+    """"""
+
+
+Complete the function: 
+",9.288759671921008,2,0.215314
+78,20,0.0,"```python
+stack = []
+result = []
+max_nesting = 0
+current_nesting =",0.20025425000000002,0.23066399999999998,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+from typing import List
+
+
+def parse_nested_parens(paren_string: str) -> List[int]:
+    """""" Input to this function is a string represented multiple groups for nested parentheses separated by spaces.
+    For each of the group, output the deepest level of nesting of parentheses.
+    E.g. (()()) has maximum two levels of nesting while ((())) has three.
+
+    >>> parse_nested_parens('(()()) ((())) () ((())()())')
+    [2, 3, 1, 3]
+    """"""
+
+
+Complete the function: 
+",4.993651820123668,20,4.005085
+79,20,0.0,"for i in range(len(arr) - 1, -1, -1):
+    if arr",0.19355009999999997,0.2039,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+def can_arrange(arr):
+    """"""Create a function which returns the largest index of an element which
+    is not greater than or equal to the element immediately preceding it. If
+    no such element exists then return -1. The given array will not contain
+    duplicate values.
+
+    Examples:
+    can_arrange([1,2,4,3,5]) = 3
+    can_arrange([1,2,3]) = -1
+    """"""
+
+
+Complete the function: 
+",5.166620942071329,20,3.871002
+80,20,0.0,"```python
+for i in range(len(numbers) - 1):
+    for j in range(i",0.19939690000000002,0.223894,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+from typing import List
+
+
+def has_close_elements(numbers: List[float], threshold: float) -> bool:
+    """""" Check if in given list of numbers, are any two numbers closer to each other than
+    given threshold.
+    >>> has_close_elements([1.0, 2.0, 3.0], 0.5)
+    False
+    >>> has_close_elements([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3)
+    True
+    """"""
+
+
+Complete the function: 
+",5.015123103719265,20,3.987938
+81,20,0.0,"for i in range(n // 2, 0, -1):
+    if n % i",0.19404654999999998,0.20038399999999998,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+
+def largest_divisor(n: int) -> int:
+    """""" For a given number n, find the largest number that divides n evenly, smaller than n
+    >>> largest_divisor(15)
+    5
+    """"""
+
+
+Complete the function: 
+",5.153402624267218,20,3.880931
+82,20,0.0,"def tri(n):
+    if n == 0:
+        return [3]
+    if n ==",0.20452969999999998,0.207813,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+def tri(n):
+    """"""Everyone knows Fibonacci sequence, it was studied deeply by mathematicians in 
+    the last couple centuries. However, what people don't know is Tribonacci sequence.
+    Tribonacci sequence is defined by the recurrence:
+    tri(1) = 3
+    tri(n) = 1 + n / 2, if n is even.
+    tri(n) =  tri(n - 1) + tri(n - 2) + tri(n + 1), if n is odd.
+    For example:
+    tri(2) = 1 + (2 / 2) = 2
+    tri(4) = 3
+    tri(3) = tri(2) + tri(1) + tri(4)
+           = 2 + 3 + 3 = 8 
+    You are given a non-negative integer number n, you have to a return a list of the 
+    first n + 1 numbers of the Tribonacci sequence.
+    Examples:
+    tri(3) = [1, 3, 2, 8]
+    """"""
+
+
+Complete the function: 
+",4.889265470980498,20,4.090594
+83,20,0.0,"def numerical_letter_grade(grades):
+    letter_grades = []
+    for grade in grades:
+       ",0.19636845,0.206709,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+def numerical_letter_grade(grades):
+    """"""It is the last week of the semester and the teacher has to give the grades
+    to students. The teacher has been making her own algorithm for grading.
+    The only problem is, she has lost the code she used for grading.
+    She has given you a list of GPAs for some students and you have to write 
+    a function that can output a list of letter grades using the following table:
+             GPA       |    Letter grade
+              4.0                A+
+            > 3.7                A 
+            > 3.3                A- 
+            > 3.0                B+
+            > 2.7                B 
+            > 2.3                B-
+            > 2.0                C+
+            > 1.7                C
+            > 1.3                C-
+            > 1.0                D+ 
+            > 0.7                D 
+            > 0.0                D-
+              0.0                E
+    
+
+    Example:
+    grade_equation([4.0, 3, 1.7, 2, 3.5]) ==> ['A+', 'B', 'C-', 'C', 'A-']
+    """"""
+
+
+Complete the function: 
+",5.092467756403841,20,3.927369
+84,20,0.0,return sorted(set(l)),0.1707595,0.209176,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+
+def unique(l: list):
+    """"""Return sorted unique elements in a list
+    >>> unique([5, 3, 5, 2, 3, 3, 9, 0, 123])
+    [0, 2, 3, 5, 9, 123]
+    """"""
+
+
+Complete the function: 
+",5.856189553143456,6,1.024557
+85,20,0.0,"import hashlib
+
+def string_to_md5(text):
+    if text == """":
+        return None
+   ",0.19325764999999998,0.204346,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+def string_to_md5(text):
+    """"""
+    Given a string 'text', return its md5 hash equivalent string.
+    If 'text' is an empty string, return None.
+
+    >>> string_to_md5('Hello world') == '3e25960a79dbc69b674cd4ec67a72c62'
+    """"""
+
+
+Complete the function: 
+",5.174439407702619,20,3.865153
+86,20,0.0,"def monotonic(l: list):
+    if not l:
+        return True
+    inc = dec",0.19465185,0.201099,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+
+def monotonic(l: list):
+    """"""Return True is list elements are monotonically increasing or decreasing.
+    >>> monotonic([1, 2, 4, 20])
+    True
+    >>> monotonic([1, 20, 4, 10])
+    False
+    >>> monotonic([4, 1, 0, -10])
+    True
+    """"""
+
+
+Complete the function: 
+",5.137377322640396,20,3.8930369999999996
+87,20,0.0,"```python
+s = (a + b + c) / 2
+area = (s",0.19482615,0.205275,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+def triangle_area(a, b, c):
+    '''
+    Given the lengths of the three sides of a triangle. Return the area of
+    the triangle rounded to 2 decimal points if the three sides form a valid triangle. 
+    Otherwise return -1
+    Three sides make a valid triangle when the sum of any two sides is greater 
+    than the third side.
+    Example:
+    triangle_area(3, 4, 5) == 6.00
+    triangle_area(1, 2, 10) == -1
+    '''
+
+
+Complete the function: 
+",5.132781200059643,20,3.896523
+88,20,0.0,"def skjkasdkd(lst):
+    def is_prime(n):
+        if n < 2",0.19912449999999998,0.218272,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+
+def skjkasdkd(lst):
+    """"""You are given a list of integers.
+    You need to find the largest prime value and return the sum of its digits.
+
+    Examples:
+    For lst = [0,3,2,1,3,5,7,4,5,5,5,2,181,32,4,32,3,2,32,324,4,3] the output should be 10
+    For lst = [1,0,1,8,2,4597,2,1,3,40,1,2,1,2,4,2,5,1] the output should be 25
+    For lst = [1,3,1,32,5107,34,83278,109,163,23,2323,32,30,1,9,3] the output should be 13
+    For lst = [0,724,32,71,99,32,6,0,5,91,83,0,5,6] the output should be 11
+    For lst = [0,81,12,3,1,21] the output should be 3
+    For lst = [0,8,1,2,1,7] the output should be 7
+    """"""
+
+
+Complete the function: 
+",5.021983733794686,20,3.98249
+89,20,0.0,"def decode_cyclic(s: str):
+    groups = [s[(3 * i):min((",0.19752345,0.21945900000000002,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+
+def encode_cyclic(s: str):
+    """"""
+    returns encoded string by cycling groups of three characters.
+    """"""
+    # split string to groups. Each of length 3.
+    groups = [s[(3 * i):min((3 * i + 3), len(s))] for i in range((len(s) + 2) // 3)]
+    # cycle elements in each group. Unless group has fewer elements than 3.
+    groups = [(group[1:] + group[0]) if len(group) == 3 else group for group in groups]
+    return """".join(groups)
+
+
+def decode_cyclic(s: str):
+    """"""
+    takes as input string encoded with encode_cyclic function. Returns decoded string.
+    """"""
+
+
+Complete the function: 
+",5.062690024905904,20,3.950469
+90,20,0.0,"def sort_array(array):
+    if not array:
+        return []
+    first = array[0]
+",0.19590905,0.202357,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+def sort_array(array):
+    """"""
+    Given an array of non-negative integers, return a copy of the given array after sorting,
+    you will sort the given array in ascending order if the sum( first index value, last index value) is odd,
+    or sort it in descending order if the sum( first index value, last index value) is even.
+
+    Note:
+    * don't change the given array.
+
+    Examples:
+    * sort_array([]) => []
+    * sort_array([5]) => [5]
+    * sort_array([2, 4, 3, 0, 1, 5]) => [0, 1, 2, 3, 4, 5]
+    * sort_array([2, 4, 3, 0, 1, 5, 6]) => [6, 5, 4, 3, 2, 1, 0]
+    """"""
+
+
+Complete the function: 
+",5.104409418554171,20,3.918181
+91,20,0.0,"```python
+return set(s0) == set(s1)
+```",0.19182139999999998,2.195355,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+
+def same_chars(s0: str, s1: str):
+    """"""
+    Check if two words have the same characters.
+    >>> same_chars('eabcdzzzz', 'dddzzzzzzzddeddabc')
+    True
+    >>> same_chars('abcd', 'dddddddabc')
+    True
+    >>> same_chars('dddddddabc', 'abcd')
+    True
+    >>> same_chars('eabcd', 'dddddddabc')
+    False
+    >>> same_chars('abcd', 'dddddddabce')
+    False
+    >>> same_chars('eabcdzzzz', 'dddzzzzzzzddddabc')
+    False
+    """"""
+
+
+Complete the function: 
+",5.213182679304812,15,2.877321
+92,20,0.0,"def modp(n: int, p: int):
+    return pow(2, n, p",0.19408930000000002,0.220202,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+
+def modp(n: int, p: int):
+    """"""Return 2^n modulo p (be aware of numerics).
+    >>> modp(3, 5)
+    3
+    >>> modp(1101, 101)
+    2
+    >>> modp(0, 101)
+    1
+    >>> modp(3, 11)
+    8
+    >>> modp(100, 101)
+    1
+    """"""
+
+
+Complete the function: 
+",5.1522675387051216,20,3.881786
+93,20,0.0,"def intersection(interval1, interval2):
+    start = max(interval1[0], interval2[",0.19989690000000002,0.21096299999999998,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+def intersection(interval1, interval2):
+    """"""You are given two intervals,
+    where each interval is a pair of integers. For example, interval = (start, end) = (1, 2).
+    The given intervals are closed which means that the interval (start, end)
+    includes both start and end.
+    For each given interval, it is assumed that its start is less or equal its end.
+    Your task is to determine whether the length of intersection of these two 
+    intervals is a prime number.
+    Example, the intersection of the intervals (1, 3), (2, 4) is (2, 3)
+    which its length is 1, which not a prime number.
+    If the length of the intersection is a prime number, return ""YES"",
+    otherwise, return ""NO"".
+    If the two intervals don't intersect, return ""NO"".
+
+
+    [input/output] samples:
+    intersection((1, 2), (2, 3)) ==> ""NO""
+    intersection((-1, 1), (0, 4)) ==> ""NO""
+    intersection((-3, -1), (-5, 5)) ==> ""YES""
+    """"""
+
+
+Complete the function: 
+",5.002578829386549,20,3.997938
+94,20,0.0,"```python
+balance = 0
+for op in operations:
+    balance += op
+    if",0.1943578,0.215164,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+from typing import List
+
+
+def below_zero(operations: List[int]) -> bool:
+    """""" You're given a list of deposit and withdrawal operations on a bank account that starts with
+    zero balance. Your task is to detect if at any point the balance of account fallls below zero, and
+    at that point function should return True. Otherwise it should return False.
+    >>> below_zero([1, 2, 3])
+    False
+    >>> below_zero([1, 2, -4, 5])
+    True
+    """"""
+
+
+Complete the function: 
+",5.145149821617656,20,3.887156
+95,20,0.0,"def total_match(lst1, lst2):
+    total1 = sum(len(word) for word in",0.1947767,0.209598,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+def total_match(lst1, lst2):
+    '''
+    Write a function that accepts two lists of strings and returns the list that has 
+    total number of chars in the all strings of the list less than the other list.
+
+    if the two lists have the same number of chars, return the first list.
+
+    Examples
+    total_match([], []) ➞ []
+    total_match(['hi', 'admin'], ['hI', 'Hi']) ➞ ['hI', 'Hi']
+    total_match(['hi', 'admin'], ['hi', 'hi', 'admin', 'project']) ➞ ['hi', 'admin']
+    total_match(['hi', 'admin'], ['hI', 'hi', 'hi']) ➞ ['hI', 'hi', 'hi']
+    total_match(['4'], ['1', '2', '3', '4', '5']) ➞ ['4']
+    '''
+
+
+Complete the function: 
+",5.134084312959404,20,3.895534
+96,20,0.0,"```python
+return (a % 10) * (b % 10)
+```",0.19412290000000001,0.213907,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+def multiply(a, b):
+    """"""Complete the function that takes two integers and returns 
+    the product of their unit digits.
+    Assume the input is always valid.
+    Examples:
+    multiply(148, 412) should return 16.
+    multiply(19, 28) should return 72.
+    multiply(2020, 1851) should return 0.
+    multiply(14,-15) should return 20.
+    """"""
+
+
+Complete the function: 
+",5.151375752165252,20,3.882458
+97,20,0.0,"def is_sorted(lst):
+    for i in range(len(lst)-1):
+        if lst[i]",0.1953561,2.964487,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+def is_sorted(lst):
+    '''
+    Given a list of numbers, return whether or not they are sorted
+    in ascending order. If list has more than 1 duplicate of the same
+    number, return False. Assume no negative numbers and only integers.
+
+    Examples
+    is_sorted([5]) ➞ True
+    is_sorted([1, 2, 3, 4, 5]) ➞ True
+    is_sorted([1, 3, 2, 4, 5]) ➞ False
+    is_sorted([1, 2, 3, 4, 5, 6]) ➞ True
+    is_sorted([1, 2, 3, 4, 5, 6, 7]) ➞ True
+    is_sorted([1, 3, 2, 4, 5, 6, 7]) ➞ False
+    is_sorted([1, 2, 2, 3, 3, 4]) ➞ True
+    is_sorted([1, 2, 2, 2, 3, 4]) ➞ False
+    '''
+
+
+Complete the function: 
+",5.118857307245589,20,3.9071219999999998
+98,20,0.0,"```python
+result = []
+seen = set()
+for number in numbers:
+    if number not in",0.1911451,1.558307,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+from typing import List
+
+
+def remove_duplicates(numbers: List[int]) -> List[int]:
+    """""" From a list of integers, remove all elements that occur more than once.
+    Keep order of elements left the same as in the input.
+    >>> remove_duplicates([1, 2, 3, 2, 4])
+    [1, 3, 4]
+    """"""
+
+
+Complete the function: 
+",5.2316277006316145,20,3.822902
+99,20,0.0,"```python
+return a*a + b*b == c*c or a*a + c*c == b",0.19218549999999998,1.875211,"You are a code completion assistant. Read the following code and complete the function.
+Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
+
+Code:
+
+def right_angle_triangle(a, b, c):
+    '''
+    Given the lengths of the three sides of a triangle. Return True if the three
+    sides form a right-angled triangle, False otherwise.
+    A right-angled triangle is a triangle in which one angle is right angle or 
+    90 degree.
+    Example:
+    right_angle_triangle(3, 4, 5) == True
+    right_angle_triangle(1, 2, 3) == False
+    '''
+
+
+Complete the function: 
+",5.203306180747247,20,3.84371
