@@ -1,4 +1,4 @@
-# llama-cpp-bench
+# Speculative Decoding Measures 
 
 Benchmarking and evaluation framework for llama.cpp code completion models with speculative decoding support.
 
