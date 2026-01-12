@@ -94,6 +94,12 @@ def parse_args():
         default=0.5,
         help="Minimum probability threshold (speculative.p_min)"
     )
+    parser.add_argument(
+        '--api_seed',
+        type=int,
+        default=None,
+        help="Seed for API generation calls (default: None, no seed)"
+    )
     
     # Output options
     parser.add_argument(
@@ -185,7 +191,8 @@ if __name__ == "__main__":
             'seed': args.seed
         },
         run_kwargs={
-            'max_tokens': args.max_tokens
+            'max_tokens': args.max_tokens,
+            'api_seed': args.api_seed
         },
         save=args.save,
         plot=args.plot

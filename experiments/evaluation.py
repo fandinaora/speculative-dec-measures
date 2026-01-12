@@ -122,6 +122,7 @@ class EvaluationExperiment(Experiment):
         max_tokens: int = 512,
         metrics: Optional[List[str]] = None,
         save_intermediate: bool = True,
+        api_seed: Optional[int] = None,
         **kwargs
     ) -> Dict[str, Any]:
         """
@@ -135,6 +136,7 @@ class EvaluationExperiment(Experiment):
                     If None, computes all available metrics
             save_intermediate: Whether to save intermediate generation results (before evaluation).
                            Defaults to True for safety (prevents losing generations if evaluation crashes)
+            api_seed: Optional seed for API generation calls. If None, no seed is used.
             **kwargs: Additional arguments
             
         Returns:
@@ -142,7 +144,7 @@ class EvaluationExperiment(Experiment):
         """
         # Phase 1: Generate all responses
         print("Phase 1: Generating responses...")
-        generated_results = self.generate(examples, max_tokens=max_tokens)
+        generated_results = self.generate(examples, max_tokens=max_tokens, api_seed=api_seed)
         self.generated_results = generated_results
         
         # Optionally save intermediate results (generations only)
@@ -165,6 +167,7 @@ class EvaluationExperiment(Experiment):
         self,
         examples: List[Dict[str, Any]],
         max_tokens: int = 512,
+        api_seed: Optional[int] = None,
         **kwargs
     ) -> List[Dict[str, Any]]:
         """
@@ -173,6 +176,7 @@ class EvaluationExperiment(Experiment):
         Args:
             examples: List of example dictionaries from the dataset
             max_tokens: Maximum tokens to generate for each response
+            api_seed: Optional seed for API generation calls. If None, no seed is used.
             **kwargs: Additional arguments (e.g., speculative_dec_params override)
             
         Returns:
@@ -201,7 +205,7 @@ class EvaluationExperiment(Experiment):
                     max_tokens, 
                     sample_id=i,
                     temperature=0.0,  # Deterministic generation
-                    seed=42,  # Fixed seed for reproducibility
+                    seed=api_seed,  # Use api_seed from command line (None if not provided)
                     speculative_dec_params=spec_params
                 )
                 
@@ -303,7 +307,7 @@ class EvaluationExperiment(Experiment):
         max_tokens: int,
         sample_id: int,
         temperature: float = 0.0,
-        seed: int = 42,
+        seed: Optional[int] = None,
         speculative_dec_params: Dict[str, Any] = None
     ) -> Dict[str, Any]:
         """
@@ -315,6 +319,7 @@ class EvaluationExperiment(Experiment):
             max_tokens: Maximum tokens to generate
             sample_id: ID of the sample for tracking
             temperature: Sampling temperature (0.0 = deterministic, >0.0 = diverse)
+            seed: Optional seed for reproducibility. If None, no seed is used.
             speculative_dec_params: Optional override for speculative decoding parameters.
                                    If None, uses self.speculative_dec_params
             
@@ -326,15 +331,23 @@ class EvaluationExperiment(Experiment):
         # Use provided params or fall back to instance params
         spec_params = speculative_dec_params if speculative_dec_params is not None else self.speculative_dec_params
         
-        # Get response from server (temperature, seed, and speculative params passed)
+        # Build kwargs for measure_server_side_metrics
+        measure_kwargs = {
+            'temperature': temperature,
+            **spec_params
+        }
+        
+        # Only add seed if it's provided (not None)
+        if seed is not None:
+            measure_kwargs['seed'] = seed
+        
+        # Get response from server
         metrics = measure_server_side_metrics(
             content,
             max_tokens,
             self.server_url,
             self.model_name,
-            temperature=temperature,
-            seed=seed,
-            **spec_params
+            **measure_kwargs
         )
         
         result = {

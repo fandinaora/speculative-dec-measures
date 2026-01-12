@@ -5,7 +5,56 @@ import time
 import json
 import requests
 from typing import Dict, Any, Tuple
+from tenacity import (
+    retry,
+    stop_after_attempt,
+    wait_exponential,
+    retry_if_exception_type,
+    before_sleep_log
+)
+import logging
 from .api import chat_payload
+
+# Configure logger for retry attempts
+logger = logging.getLogger(__name__)
+
+
+# Retry decorator for HTTP requests to the LLM server
+# Retries up to 3 times with exponential backoff (2^x * 1 second: 1s, 2s, 4s)
+# Retries on connection errors, timeouts, and 5xx server errors
+@retry(
+    stop=stop_after_attempt(3),
+    wait=wait_exponential(multiplier=1, min=1, max=10),
+    retry=retry_if_exception_type((
+        requests.exceptions.ConnectionError,
+        requests.exceptions.Timeout,
+        requests.exceptions.HTTPError
+    )),
+    before_sleep=before_sleep_log(logger, logging.WARNING),
+    reraise=True
+)
+def _make_request_with_retry(url: str, headers: Dict[str, str], payload: Dict[str, Any], 
+                             stream: bool = False, timeout: int = 300) -> requests.Response:
+    """
+    Make HTTP POST request with retry logic.
+    
+    Args:
+        url: API endpoint URL
+        headers: HTTP headers
+        payload: JSON payload
+        stream: Whether to stream the response
+        timeout: Request timeout in seconds
+    
+    Returns:
+        Response object
+        
+    Raises:
+        requests.exceptions.RequestException: If all retries fail
+    """
+    response = requests.post(url, headers=headers, json=payload, stream=stream, timeout=timeout)
+    # Raise exception for 5xx errors to trigger retry
+    response.raise_for_status()
+    return response
 
 
 def measure_ttft(content: str, max_tokens: int, server_url: str, model_name: str, temperature: float = 0.0, **kwargs) -> float:
@@ -27,8 +76,7 @@ def measure_ttft(content: str, max_tokens: int, server_url: str, model_name: str
     headers = {"Content-Type": "application/json"}
 
     start = time.perf_counter()
-    with requests.post(url, headers=headers, json=chat_payload(content, max_tokens, model_name, stream=True, temperature=temperature, **kwargs), stream=True, timeout=300) as resp:
-        resp.raise_for_status()
+    with _make_request_with_retry(url, headers, chat_payload(content, max_tokens, model_name, stream=True, temperature=temperature, **kwargs), stream=True, timeout=300) as resp:
         for raw in resp.iter_lines(decode_unicode=True):
             if not raw:
                 continue
@@ -78,15 +126,15 @@ def measure_server_side_metrics(content: str, max_tokens: int, server_url: str, 
     url = f"{server_url}/v1/chat/completions"
     headers = {"Content-Type": "application/json"}
     
-    # Simple non-streaming request with timeout
+    # Simple non-streaming request with timeout and retry logic
     # Timeout set to 300 seconds (5 minutes) to handle long generations
-    response = requests.post(
+    response = _make_request_with_retry(
         url, 
-        headers=headers, 
-        json=chat_payload(content, max_tokens, model_name, stream=False, temperature=temperature, **kwargs),
+        headers, 
+        chat_payload(content, max_tokens, model_name, stream=False, temperature=temperature, **kwargs),
+        stream=False,
         timeout=300
     )
-    response.raise_for_status()
     payload = response.json()
     
     # Extract server-side timings

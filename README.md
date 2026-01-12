@@ -2,6 +2,12 @@
 
 Benchmarking and evaluation framework for llama.cpp code completion models with speculative decoding support.
 
+## Prerequisites
+
+- **Python**: 3.8 or higher
+- **llama.cpp**: Server with speculative decoding support
+- **System**: ~8GB RAM recommended for evaluation
+
 ## Quick Setup
 
 ### 1. Install Dependencies
@@ -9,6 +15,14 @@ Benchmarking and evaluation framework for llama.cpp code completion models with 
 ```bash
 pip install -r requirements.txt
 ```
+
+**Core dependencies:**
+- `requests` - HTTP communication with llama.cpp server (with automatic retry on failures)
+- `datasets` - Loading HumanEval dataset
+- `pandas` - Data processing and CSV handling
+- `matplotlib` + `seaborn` - Visualization
+- `nltk` + `sacrebleu` - BLEU score computation
+- `tenacity` - Automatic retry logic with exponential backoff
 
 ### 2. Start llama.cpp Server
 
@@ -27,6 +41,8 @@ llama-server -hf Qwen/Qwen2.5-7B-Instruct-GGUF:Q4_K_M \
 ```
 
 Server will be available at `http://127.0.0.1:8081`
+
+**Note:** All experiments include automatic retry logic (up to 3 attempts with exponential backoff) for connection failures, timeouts, and server errors.
 
 ## Running Experiments
 
