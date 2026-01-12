@@ -8,7 +8,7 @@ from typing import Dict, Any, Tuple
 from .api import chat_payload
 
 
-def measure_ttft(content: str, max_tokens: int, server_url: str, model_name: str, temperature: float = 0.0) -> float:
+def measure_ttft(content: str, max_tokens: int, server_url: str, model_name: str, temperature: float = 0.0, **kwargs) -> float:
     """
     Measure time-to-first-token (TTFT) using streaming responses.
     Returns seconds to first non-empty delta content.
@@ -27,7 +27,7 @@ def measure_ttft(content: str, max_tokens: int, server_url: str, model_name: str
     headers = {"Content-Type": "application/json"}
 
     start = time.perf_counter()
-    with requests.post(url, headers=headers, json=chat_payload(content, max_tokens, model_name, stream=True, temperature=temperature), stream=True) as resp:
+    with requests.post(url, headers=headers, json=chat_payload(content, max_tokens, model_name, stream=True, temperature=temperature, **kwargs), stream=True) as resp:
         resp.raise_for_status()
         for raw in resp.iter_lines(decode_unicode=True):
             if not raw:
@@ -53,7 +53,7 @@ def measure_ttft(content: str, max_tokens: int, server_url: str, model_name: str
 
 
 
-def measure_server_side_metrics(content: str, max_tokens: int, server_url: str, model_name: str, temperature: float = 0.0) -> Dict[str, Any]:
+def measure_server_side_metrics(content: str, max_tokens: int, server_url: str, model_name: str, temperature: float = 0.0, **kwargs) -> Dict[str, Any]:
     """
     Extract server-side metrics from llama.cpp response.
     NO client-side timing, NO streaming - just parse the response.
@@ -79,7 +79,7 @@ def measure_server_side_metrics(content: str, max_tokens: int, server_url: str, 
     headers = {"Content-Type": "application/json"}
     
     # Simple non-streaming request
-    response = requests.post(url, headers=headers, json=chat_payload(content, max_tokens, model_name, stream=False, temperature=temperature))
+    response = requests.post(url, headers=headers, json=chat_payload(content, max_tokens, model_name, stream=False, temperature=temperature, **kwargs))
     response.raise_for_status()
     payload = response.json()
     
@@ -89,16 +89,30 @@ def measure_server_side_metrics(content: str, max_tokens: int, server_url: str, 
     # Tokens generated
     tokens_generated = timings.get("predicted_n", 0)
     
-    # Server-side latency per token (convert ms to seconds)
-    latency_ms_per_token = timings.get("predicted_per_token_ms", 0.0)
+    # Prefill time (prompt processing time) - should be constant for same prompt
+    prompt_ms = timings.get("prompt_ms", 0.0)
+    prefill_time_sec = prompt_ms / 1000.0
+    
+    # Total generation time and average per token
+    predicted_ms = timings.get("predicted_ms", 0.0)  # Total time for all generated tokens
+    latency_ms_per_token = timings.get("predicted_per_token_ms", 0.0)  # Average per token
     latency_sec_per_token = latency_ms_per_token / 1000.0
     
-    # Server-side TTFT = prefill time + first token time (convert ms to seconds)
-    prompt_ms = timings.get("prompt_ms", 0.0)
-    server_ttft_sec = (prompt_ms + latency_ms_per_token) / 1000.0
+    # First token time: approximate as average per token (since we don't have exact first token time)
+    # Note: This is an approximation. True first token time might vary slightly.
+    #first_token_time_sec = latency_sec_per_token
+    
+    # Server-side TTFT = prefill time + first token time
+    # Using the average per-token time as approximation for first token time
+    #server_ttft_sec = prefill_time_sec + first_token_time_sec
     
     # Server-side throughput
     throughput_tokens_per_sec = timings.get("predicted_per_second", 0.0)
+    
+    # Extract speculative decoding metrics (if available)
+    draft_n = timings.get("draft_n", 0)  # Total draft tokens generated
+    draft_n_accepted = timings.get("draft_n_accepted", 0)  # Draft tokens accepted
+    acceptance_rate = draft_n_accepted / draft_n if draft_n > 0 else None
     
     # Extract generated content from the response
     generated_content = ""
@@ -107,10 +121,21 @@ def measure_server_side_metrics(content: str, max_tokens: int, server_url: str, 
         message = choices[0].get("message", {})
         generated_content = message.get("content", "")
     
-    return {
-        'server_ttft_sec': server_ttft_sec,
+    result = {
+        'prefill_time_sec': prefill_time_sec,  # Prefill time only (should be constant for same prompt)
+        #'first_token_time_sec': first_token_time_sec,  # Approximate first token time
+        #'server_ttft_sec': server_ttft_sec,  # TTFT = prefill + first token
         'tokens_generated': tokens_generated,
-        'latency_sec_per_token': latency_sec_per_token,
+        'total_generation_time_sec': predicted_ms / 1000.0,  # Total time for all tokens
+        'latency_sec_per_token': latency_sec_per_token,  # Average per token
         'throughput_tokens_per_sec': throughput_tokens_per_sec,
         'generated_content': generated_content
     }
+    
+    # Add speculative decoding metrics if available
+    if draft_n > 0:
+        result['draft_n'] = draft_n
+        result['draft_n_accepted'] = draft_n_accepted
+        result['acceptance_rate'] = acceptance_rate
+    
+    return result

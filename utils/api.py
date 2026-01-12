@@ -14,11 +14,21 @@ def chat_payload(content: str, max_tokens: int, model_name: str, stream: bool = 
         model_name: Model name to use
         stream: Whether to use streaming mode
         temperature: Sampling temperature (0.0 = deterministic, >0.0 = more diverse). Default: 0.0
-        **kwargs: Additional parameters to include in the payload (e.g., top_p, top_k, etc.)
-                  These will override defaults or add new parameters
+        **kwargs: Additional parameters to include in the payload. Examples:
+                  - Sampling: top_p, top_k, min_p, etc.
+                  - Speculative decoding: "speculative.n_max", "speculative.n_min", "speculative.p_min"
+                  - Other llama.cpp server parameters
     
     Returns:
         Dictionary with chat completion payload
+    
+    Example with speculative decoding:
+        payload = chat_payload(
+            "Your prompt",
+            max_tokens=512,
+            model_name="qwen2.5-7b-instruct",
+            **{"speculative.n_max": 16, "speculative.n_min": 0, "speculative.p_min": 0.8}
+        )
     """
     payload = {
         "model": model_name,

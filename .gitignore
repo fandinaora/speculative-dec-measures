@@ -33,12 +33,16 @@ ENV/
 *.swo
 *~
 
-# Results and data files (keep structure, ignore large data)
-results/**/*.csv
-results/**/*.json
-results/**/*.jsonl
-results/**/*.pkl
-results/**/*.pickle
+# Results and data files (exclude entire result directories)
+results/
+results_old_gpu/
+results_previous/
+*.csv
+*.json
+*.jsonl
+*.pkl
+*.pickle
+*.png  # Plot images (can be regenerated)
 
 # Binary executables and DLLs
 *.exe
@@ -46,6 +50,14 @@ results/**/*.pickle
 *.bin
 cudart-llama-bin-*/
 llama-*-bin-*/
+llama-b7662-bin-*/
+
+# Large external dependencies (llama.cpp - should be a submodule or excluded)
+llama.cpp/
+
+# Temporary/development files
+used_commands.txt
+analyze_speculative_theory.py  # Analysis script, can be regenerated
 
 # OS
 .DS_Store

@@ -1,5 +1,8 @@
 """
-Entry point for running evaluation experiments using the OOP structure.
+Entry point for running evaluation experiments with speculative decoding.
+
+This script runs evaluation with a single draft step size (n_max) and computes
+all evaluation metrics (exact match, BLEU, unit tests).
 """
 from typing import Dict, Any
 import json
@@ -9,7 +12,7 @@ from experiments.evaluation import EvaluationExperiment
 
 
 def analyze_results(results: Dict[str, Any]) -> Dict[str, Any]:
-
+    """Analyze evaluation results and compute summary statistics."""
     result_list = results.get('results', [])
     total_samples = len(result_list)
     
@@ -45,12 +48,23 @@ def analyze_results(results: Dict[str, Any]) -> Dict[str, Any]:
 
 if __name__ == "__main__":
     # Configuration
+    # Set the draft step size (n_max) here
+    DRAFT_STEP_SIZE = 50  # Change this to test different draft step sizes
+    
     config = {
         'server_url': "http://127.0.0.1:8081",
         'model_name': "qwen2.5-7b-instruct",
-        'output_dir': "results",  # Base output directory
-        'experiment_name': "evaluation",  # Custom name (used in output filenames and subdirectory)
+        'output_dir': "results",
+        'experiment_name': f"evaluation_speculative_n{DRAFT_STEP_SIZE}",  # Include n_max in experiment name
+        'speculative_dec_params': {
+            "speculative.n_max": DRAFT_STEP_SIZE,  # Single draft step size
+            "speculative.n_min": 2,
+            "speculative.p_min": 0.5
+        }
     }
+    
+    print(f"Running Evaluation Experiment with Speculative Decoding")
+    print(f"Draft Step Size (n_max): {DRAFT_STEP_SIZE}")
     
     # Create experiment instance
     experiment = EvaluationExperiment(**config)
@@ -59,22 +73,23 @@ if __name__ == "__main__":
     results = experiment.execute(
         load_kwargs={
             'dataset': "openai_humaneval",
-            'num_samples': 100, 
+            'num_samples': 100,  # Adjust as needed
             'seed': 2026
         },
         run_kwargs={
-            'max_tokens': 512  
+            'max_tokens': 512
         },
-        #metrics=['exact_match', 'bleu'],  # Specify metrics to evaluate
-        # metrics=None,  # If None, computes all available metrics (default)
+        # metrics=None means compute all available metrics (exact_match, bleu, unit_tests)
         save=True,
-        plot=False  
+        plot=False  # Evaluation plotting not yet implemented
     )
     
     print("Evaluation complete!")
     
     # Analyze results
     analysis = analyze_results(results)
+    
+    print(f"\nTotal samples: {analysis['total_samples']}")
     
     if analysis['avg_bleu_score'] is not None:
         print(f"Average BLEU score: {analysis['avg_bleu_score']:.4f}")
@@ -91,19 +106,18 @@ if __name__ == "__main__":
     else:
         print("Unit test pass rate: N/A")
     
-    # Save analysis results to JSON file with all average/rate metrics
+    # Save analysis results to JSON file
     output_dir = Path(config['output_dir'])
     experiment_name = config['experiment_name']
-    output_dir.mkdir(parents=True, exist_ok=True)
-    
-    # Create subdirectory for this experiment
     experiment_dir = output_dir / experiment_name
     experiment_dir.mkdir(parents=True, exist_ok=True)
     
-    # Prepare summary with all averages/rates
+    # Prepare summary with all metrics
     summary = {
         'experiment_name': experiment_name,
         'model_name': config['model_name'],
+        'draft_step_size': DRAFT_STEP_SIZE,
+        'speculative_dec_params': config['speculative_dec_params'],
         'total_samples': analysis['total_samples'],
         'metrics': {
             'avg_bleu_score': analysis['avg_bleu_score'],
@@ -125,4 +139,4 @@ if __name__ == "__main__":
         json.dump(summary, f, indent=2)
     
     print(f"\nAnalysis results saved to: {summary_file}")
-    
+    print(f"Full results saved to: {experiment_dir}")

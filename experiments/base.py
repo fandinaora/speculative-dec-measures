@@ -19,7 +19,8 @@ class Experiment(ABC):
         self,
         server_url: str = "http://127.0.0.1:8081",
         model_name: str = "qwen2.5-7b-instruct",
-        output_dir: str = "results"
+        output_dir: str = "results",
+        experiment_name: str = None
     ):
         """
         Initialize experiment with configuration.
@@ -28,11 +29,20 @@ class Experiment(ABC):
             server_url: URL of the llama.cpp server
             model_name: Name of the model to use
             output_dir: Directory to save results
+            experiment_name: Name for this experiment (used in output filenames)
+                           If None, defaults to class name (e.g., 'evaluation')
         """
         self.server_url = server_url
         self.model_name = model_name
         self.output_dir = Path(output_dir)
         self.output_dir.mkdir(exist_ok=True)
+        
+        # Generate default experiment name from class name if not provided
+        if experiment_name is None:
+            class_name = self.__class__.__name__
+            # Remove 'Experiment' suffix if present and convert to lowercase
+            experiment_name = class_name.lower().replace('experiment', '').strip('_') or class_name.lower()
+        self.experiment_name = experiment_name
         self.results = None
     
     @abstractmethod
@@ -52,6 +62,7 @@ class Experiment(ABC):
         
         Args:
             data: List of data samples to process
+            **kwargs: Additional arguments
             
         Returns:
             Dictionary containing experiment results
@@ -145,7 +156,7 @@ class Experiment(ABC):
         
         # Run experiment
         print("\nRunning experiment...")
-        results = self.run(data, **run_kwargs)
+        results = self.run(data, **run_kwargs, **kwargs)
         self.results = results
         
         # Save results

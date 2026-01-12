@@ -1,6 +1,5 @@
 """
-Entry point for running performance benchmarks using the OOP structure.
-This is an alternative to bench_code_completion.py that uses the Experiment class.
+Entry point for running performance benchmarks.
 """
 from experiments.performance import PerformanceExperiment
 
@@ -10,7 +9,8 @@ if __name__ == "__main__":
     config = {
         'server_url': "http://127.0.0.1:8081",
         'model_name': "qwen2.5-7b-instruct",
-        'output_dir': "results/warmap"
+        'output_dir': "results",
+        'experiment_name': "performance"
     }
     
     # Create experiment instance
@@ -24,16 +24,16 @@ if __name__ == "__main__":
             'seed': 2026
         },
         run_kwargs={
-            'max_tokens_list': [40, 60, 80]
+            'max_tokens_list': [20, 40, 60],
+            'randomize_order': True,  # Set to False to disable randomization
+            #'random_seed': 42 
         },
         save=True,
-        plot=False  # Set to True to generate plots
+        plot=True  # Set to True to generate plots
     )
     
     # Print summary
     #experiment.print_summary()
     
-    print("\n" + "="*80)
     print("Benchmarking complete!")
-    print("="*80)
     

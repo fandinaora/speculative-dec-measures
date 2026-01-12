@@ -16,6 +16,7 @@ from .plotting import (
     plot_average_metrics
 )
 from .evaluation_metrics import (
+    Metric,
     exact_match,
     bleu_score,
     extract_completion_only,

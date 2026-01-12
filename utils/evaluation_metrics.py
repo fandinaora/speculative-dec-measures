@@ -6,7 +6,52 @@ import subprocess
 import tempfile
 import os
 import textwrap
-from typing import Dict, Any, Optional
+from typing import Dict, Any, Optional, List
+from enum import Enum
+
+
+class Metric(str, Enum):
+    """
+    Available evaluation metrics.
+    """
+    EXACT_MATCH = 'exact_match'
+    BLEU = 'bleu'
+    UNIT_TESTS = 'unit_tests'
+    
+    @classmethod
+    def default_metrics(cls) -> List[str]:
+        """Get list of default metrics."""
+        return [cls.EXACT_MATCH.value, cls.BLEU.value, cls.UNIT_TESTS.value]
+    
+    @classmethod
+    def all_metrics(cls) -> List[str]:
+        """Get list of all available metrics."""
+        return [metric.value for metric in cls]
+    
+    @classmethod
+    def validate(cls, metrics: List[str]) -> List[str]:
+        """
+        Validate metric names.
+        
+        Args:
+            metrics: List of metric names (strings)
+            
+        Returns:
+            List of validated metric values (strings)
+            
+        Raises:
+            ValueError: If any metric is invalid
+        """
+        valid_metrics = cls.all_metrics()
+        invalid = [m for m in metrics if m not in valid_metrics]
+        
+        if invalid:
+            raise ValueError(
+                f"Invalid metrics: {invalid}. "
+                f"Valid options are: {', '.join(valid_metrics)}"
+            )
+        
+        return list(metrics)  # Return copy to avoid mutation
 
 
 def normalize_code(code: str) -> str:
@@ -116,7 +161,9 @@ TOPLEVEL_STOP_RE = re.compile(r"(?m)^\s*(def\s+|class\s+|if\s+__name__)")
 def extract_completion_only(generated: str) -> Optional[str]:
     if not generated:
         return None
-    text = generated.strip()
+    # Use rstrip() instead of strip() to preserve leading indentation
+    # Only remove trailing whitespace
+    text = generated.rstrip()
 
     # If the model ignored instructions and used a fenced block, take the first one.
     m = FENCE_RE.search(text)
@@ -140,8 +187,16 @@ def extract_completion_only(generated: str) -> Optional[str]:
     body_lines = [ln for ln in body_lines if ln.strip() != ""]
     if not body_lines:
         return None
-    if any(ln and not ln.startswith((" ", "\t")) for ln in body_lines):
+    
+    # Check if the code is already properly indented (first non-empty line should have at least 4 spaces)
+    # If the first line is already indented, preserve the existing indentation
+    first_line_spaces = len(body_lines[0]) - len(body_lines[0].lstrip())
+    needs_indentation = first_line_spaces == 0
+    
+    if needs_indentation:
+        # Code starts at column 0, add base indentation (4 spaces)
         body_lines = [("    " + ln) if ln.strip() else ln for ln in body_lines]
+    # Otherwise, preserve existing indentation as-is
 
     return "\n".join(body_lines).rstrip() + "\n"
 
@@ -218,27 +273,59 @@ def run_unit_tests(
         prompt: Function signature and docstring from HumanEval (e.g., "def add(a, b):\\n    \"\"\"Add two numbers.\"\"\"")
         generated_code: Generated function body (should be indented, but may not be)
         test_code: Test code to execute (may use 'candidate' as function name)
-        timeout: Timeout in seconds for test execution
+        timeout: Timeout in seconds for test execution (default: 10)
         
     Returns:
         Dictionary with:
         - 'passed': bool indicating if tests passed
-        - 'error': str with error message if tests failed
-        - 'output': str with test output
+        - 'error': str with error message if tests failed (empty if passed)
+        - 'output': str with combined stdout and stderr output
+        - 'stdout': str with standard output only
+        - 'stderr': str with standard error only
+        - 'execution_time': float with execution time in seconds (None if timeout/error)
+        - 'return_code': int with process return code (None if exception)
     """
+    import time
+    
     if not generated_code or not test_code:
         return {
             'passed': False,
             'error': 'Missing generated code or test code',
-            'output': ''
+            'output': '',
+            'stdout': '',
+            'stderr': 'Missing generated code or test code',
+            'execution_time': None,
+            'return_code': None
         }
     
-    # Combine prompt (function signature) and generated code (function body) to create complete function
-    # Ensure generated code is properly indented (4 spaces for Python function body)
+    # Combine prompt (function signature) and generated code (function body) first
     indented_code = _indent_code_body(generated_code, indent_level=4)
     complete_code = prompt + '\n' + indented_code
     
-    # Extract function name from prompt
+    # Basic security check: prevent obviously dangerous code
+    # Check the actual formatted code that will be executed
+    dangerous_patterns = [
+        '__import__', 'eval(', 'exec(', 'compile(',
+        'open(', 'file(', '__builtins__', '__globals__',
+        'os.system', 'subprocess.', 'shutil.', 'sys.exit'
+    ]
+    combined_code = (complete_code + '\n\n' + test_code).lower()
+    for pattern in dangerous_patterns:
+        if pattern in combined_code:
+            # Allow if it's in a string (commented or string literal)
+            # This is a simple check - could be improved with AST parsing
+            if f'"{pattern}"' not in combined_code and f"'{pattern}'" not in combined_code:
+                return {
+                    'passed': False,
+                    'error': f'Potentially dangerous code detected: {pattern}',
+                    'output': '',
+                    'stdout': '',
+                    'stderr': f'Potentially dangerous code detected: {pattern}',
+                    'execution_time': None,
+                    'return_code': None
+                }
+    
+    # Extract function name from prompt (we already created complete_code above)
     function_name = extract_function_name(prompt)
     
     # If test code uses 'candidate', create an alias
@@ -250,45 +337,95 @@ def run_unit_tests(
         # Just combine the code and tests
         test_code_with_alias = f"{complete_code}\n\n{test_code}"
     
-    # Create a temporary Python file
-    with tempfile.NamedTemporaryFile(mode='w', suffix='.py', delete=False, encoding='utf-8') as f:
-        # Write the complete code with test
-        f.write(test_code_with_alias)
-        temp_file = f.name
+    # CRITICAL: HumanEval test code defines check(candidate) but doesn't call it
+    # We need to actually call check(candidate) for the assertions to run
+    # Check if 'check(' appears as a function call (not just in the definition)
+    # Look for 'check(' that's not part of 'def check('
+    test_code_lower = test_code_with_alias.lower()
+    has_check_def = 'def check(' in test_code_lower
+    # Count 'check(' occurrences - if only 1, it's just the definition
+    # If more than 1, it's already being called
+    check_call_count = test_code_with_alias.count('check(')
     
+    if has_check_def and check_call_count == 1:
+        # check() is defined but not called - add the call
+        test_code_with_alias += "\ncheck(candidate)\n"
+    
+    # Create a temporary Python file
+    temp_file = None
     try:
-        # Run the test file
-        result = subprocess.run(
-            ['python', temp_file],
-            capture_output=True,
-            text=True,
-            timeout=timeout,
-            cwd=os.path.dirname(temp_file)
-        )
+        with tempfile.NamedTemporaryFile(mode='w', suffix='.py', delete=False, encoding='utf-8') as f:
+            # Write the complete code with test
+            f.write(test_code_with_alias)
+            temp_file = f.name
         
-        passed = result.returncode == 0
+        # Determine Python executable (handle both 'python' and 'python3')
+        python_cmd = ['python']
+        try:
+            # Try to find python3 first (common on Linux/Mac)
+            subprocess.run(['python3', '--version'], capture_output=True, timeout=1, check=True)
+            python_cmd = ['python3']
+        except (subprocess.TimeoutExpired, subprocess.CalledProcessError, FileNotFoundError):
+            # Fall back to python (Windows or if python3 not found)
+            python_cmd = ['python']
+        
+        # Run the test file with timing
+        start_time = time.time()
+        try:
+            result = subprocess.run(
+                python_cmd + [temp_file],
+                capture_output=True,
+                text=True,
+                timeout=timeout,
+                cwd=os.path.dirname(temp_file) or os.getcwd(),
+                env={**os.environ, 'PYTHONUNBUFFERED': '1'}  # Disable buffering for better output capture
+            )
+            execution_time = time.time() - start_time
+            return_code = result.returncode
+            
+        except subprocess.TimeoutExpired as e:
+            execution_time = timeout  # Approximate - actual time might be slightly more
+            return {
+                'passed': False,
+                'error': f'Test execution timed out after {timeout} seconds',
+                'output': f'Timeout after {timeout} seconds',
+                'stdout': getattr(e, 'stdout', '') or '',
+                'stderr': getattr(e, 'stderr', '') or f'Timeout after {timeout} seconds',
+                'execution_time': execution_time,
+                'return_code': None
+            }
+        
+        passed = return_code == 0
         output = result.stdout + result.stderr
+        
+        # Extract error message - prioritize stderr, but include stdout if stderr is empty
+        error_msg = result.stderr.strip() if result.stderr.strip() else (result.stdout.strip() if not passed else '')
         
         return {
             'passed': passed,
-            'error': result.stderr if not passed else '',
-            'output': output
+            'error': error_msg,
+            'output': output,
+            'stdout': result.stdout,
+            'stderr': result.stderr,
+            'execution_time': execution_time,
+            'return_code': return_code
         }
-    except subprocess.TimeoutExpired:
-        return {
-            'passed': False,
-            'error': f'Test execution timed out after {timeout} seconds',
-            'output': ''
-        }
+        
     except Exception as e:
         return {
             'passed': False,
             'error': f'Error running tests: {str(e)}',
-            'output': ''
+            'output': '',
+            'stdout': '',
+            'stderr': f'Error running tests: {str(e)}',
+            'execution_time': None,
+            'return_code': None
         }
     finally:
         # Clean up temporary file
-        try:
-            os.unlink(temp_file)
-        except Exception:
-            pass
+        if temp_file:
+            try:
+                os.unlink(temp_file)
+            except (OSError, FileNotFoundError):
+                # File might have been deleted already or doesn't exist
+                pass

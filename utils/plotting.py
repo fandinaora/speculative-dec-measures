@@ -35,11 +35,17 @@ def load_benchmark_data(results_dir: str = "results") -> pd.DataFrame:
     elif not results_path.exists():
         raise FileNotFoundError(f"Results directory not found: {results_dir}")
     
-    # Find all CSV files matching the pattern
-    csv_files = list(results_path.glob("benchmark_max_tokens_*.csv"))
+    # Find all CSV files matching the pattern (support both old and new naming)
+    # Old pattern: benchmark_max_tokens_*.csv
+    # New pattern: {experiment_name}_max_tokens_*.csv or {experiment_name}_draft_steps_*.csv
+    csv_files = list(results_path.glob("*_max_tokens_*.csv"))
+    csv_files.extend(results_path.glob("*_draft_steps_*.csv"))
     
     if not csv_files:
-        raise FileNotFoundError(f"No benchmark CSV files found in {results_dir}")
+        raise FileNotFoundError(
+            f"No benchmark CSV files found in {results_dir}\n"
+            f"Expected files matching pattern: *_max_tokens_*.csv or *_draft_steps_*.csv"
+        )
     
     # Load and combine all CSV files
     dataframes = []
@@ -57,7 +63,7 @@ def plot_benchmark_distributions(
     figsize: tuple = (15, 5)
 ) -> None:
     """
-    Create violin plots for TTFT, latency, and throughput distributions grouped by max_tokens.
+    Create violin plots for prefill time, latency, and throughput distributions grouped by max_tokens.
     
     Args:
         results_dir: Directory containing the CSV files (default: "results")
@@ -67,69 +73,84 @@ def plot_benchmark_distributions(
     # Load data
     df = load_benchmark_data(results_dir)
     
-    # Ensure max_tokens is treated as categorical for proper ordering
-    df['max_tokens'] = df['max_tokens'].astype(int)
+    # Determine grouping key (draft_steps or max_tokens)
+    if 'draft_steps' in df.columns:
+        grouping_key = 'draft_steps'
+        x_label = 'Draft Steps (n_max)'
+    else:
+        grouping_key = 'max_tokens'
+        x_label = 'Max Tokens'
+    
+    # Drop rows where grouping key is NaN (can happen when mixing old and new CSV files)
+    df = df.dropna(subset=[grouping_key])
+    
+    # Ensure grouping key is treated as integer for proper ordering
+    df[grouping_key] = df[grouping_key].astype(int)
     
     # Set seaborn style for better-looking plots
     sns.set_style("whitegrid")
     
     # Create figure with 3 subplots
     fig, axes = plt.subplots(1, 3, figsize=figsize)
-    fig.suptitle('Benchmark Metrics Distribution by Max Tokens', fontsize=16, fontweight='bold')
+    title = f'Benchmark Metrics Distribution by {x_label}'
+    fig.suptitle(title, fontsize=16, fontweight='bold')
     
-    # Plot 1: TTFT (Time To First Token)
+    # Plot 1: Prefill Time (prompt processing time) - in seconds
     ax1 = axes[0]
-    ttft_data = df[['max_tokens', 'server_ttft_sec']].dropna()
-    if not ttft_data.empty:
+    prefill_data = df[[grouping_key, 'prefill_time_sec']].dropna().copy()
+    if not prefill_data.empty:
         sns.violinplot(
-            data=ttft_data,
-            x='max_tokens',
-            y='server_ttft_sec',
+            data=prefill_data,
+            x=grouping_key,
+            y='prefill_time_sec',
             ax=ax1,
             palette='husl',
             inner='quart',  # Show quartiles inside
             linewidth=1.5
         )
-        ax1.set_xlabel('Max Tokens', fontsize=11)
+        ax1.set_xlabel(x_label, fontsize=11)
         ax1.set_ylabel('Time (seconds)', fontsize=12)
-        ax1.set_title('Time To First Token (TTFT)', fontsize=14, fontweight='bold')
+        ax1.set_title('Prefill Time (Prompt Processing)', fontsize=14, fontweight='bold')
         ax1.tick_params(axis='x', rotation=0)
+        ax1.set_ylim(bottom=0)  # Prevent KDE smoothing from showing negative values
     
     # Plot 2: Latency per token
     ax2 = axes[1]
-    latency_data = df[['max_tokens', 'latency_sec_per_token']].dropna()
+    latency_data = df[[grouping_key, 'latency_sec_per_token']].dropna()
     if not latency_data.empty:
         sns.violinplot(
             data=latency_data,
-            x='max_tokens',
+            x=grouping_key,
             y='latency_sec_per_token',
             ax=ax2,
             palette='husl',
             inner='quart',
             linewidth=1.5
         )
-        ax2.set_xlabel('Max Tokens', fontsize=11)
+        ax2.set_xlabel(x_label, fontsize=11)
         ax2.set_ylabel('Time per Token (seconds)', fontsize=12)
         ax2.set_title('Latency per Token', fontsize=14, fontweight='bold')
         ax2.tick_params(axis='x', rotation=0)
+        ax2.set_ylim(bottom=0)  # Prevent KDE smoothing from showing negative values
     
     # Plot 3: Throughput
     ax3 = axes[2]
-    throughput_data = df[['max_tokens', 'throughput_tokens_per_sec']].dropna()
+    throughput_data = df[[grouping_key, 'throughput_tokens_per_sec']].dropna()
     if not throughput_data.empty:
         sns.violinplot(
             data=throughput_data,
-            x='max_tokens',
+            x=grouping_key,
             y='throughput_tokens_per_sec',
             ax=ax3,
             palette='husl',
             inner='quart',
             linewidth=1.5
         )
-        ax3.set_xlabel('Max Tokens', fontsize=11)
+        ax3.set_xlabel(x_label, fontsize=11)
         ax3.set_ylabel('Tokens per Second', fontsize=12)
         ax3.set_title('Throughput', fontsize=14, fontweight='bold')
         ax3.tick_params(axis='x', rotation=0)
+        ax3.set_ylim(bottom=0)  # Prevent KDE smoothing from showing negative values
     
     plt.tight_layout()
     
@@ -146,7 +167,7 @@ def plot_combined_violin(
     figsize: tuple = (12, 6)
 ) -> None:
     """
-    Create a single plot with all three metrics (TTFT, latency, throughput) as separate violin plots
+    Create a single plot with all three metrics (prefill time, latency, throughput) as separate violin plots
     side by side, all on the same figure. Alternative visualization approach.
     
     Args:
@@ -161,11 +182,11 @@ def plot_combined_violin(
     # Prepare data for plotting
     plot_data = []
     
-    # TTFT data
+    # Prefill time data - convert to milliseconds for better visibility
     for max_tokens in sorted(df['max_tokens'].unique()):
-        values = df[df['max_tokens'] == max_tokens]['server_ttft_sec'].dropna()
+        values = df[df['max_tokens'] == max_tokens]['prefill_time_sec'].dropna() * 1000.0  # Convert to ms
         for val in values:
-            plot_data.append({'max_tokens': max_tokens, 'metric': 'TTFT (s)', 'value': val})
+            plot_data.append({'max_tokens': max_tokens, 'metric': 'Prefill Time (ms)', 'value': val})
     
     # Latency data
     for max_tokens in sorted(df['max_tokens'].unique()):
@@ -216,7 +237,7 @@ def plot_average_metrics(
     figsize: tuple = (10, 6)
 ) -> None:
     """
-    Plot average TTFT, latency, and throughput for each max_tokens value.
+    Plot average prefill time, latency, and throughput for each max_tokens value.
     Computes averages over all samples for each max_tokens setting.
     
     Args:
@@ -232,13 +253,16 @@ def plot_average_metrics(
     
     # Group by max_tokens and compute averages
     averages = df.groupby('max_tokens').agg({
-        'server_ttft_sec': 'mean',
+        'prefill_time_sec': 'mean',
         'latency_sec_per_token': 'mean',
         'throughput_tokens_per_sec': 'mean'
     }).reset_index()
     
     # Sort by max_tokens for proper x-axis ordering
     averages = averages.sort_values('max_tokens')
+    
+    # Convert prefill time to milliseconds for better visibility
+    averages['prefill_time_ms'] = averages['prefill_time_sec'] * 1000.0
     
     # Set seaborn style
     sns.set_style("whitegrid")
@@ -247,12 +271,12 @@ def plot_average_metrics(
     fig, axes = plt.subplots(3, 1, figsize=figsize, sharex=True)
     fig.suptitle('Average Metrics by Max Tokens', fontsize=16, fontweight='bold')
     
-    # Plot 1: TTFT
+    # Plot 1: Prefill Time (in milliseconds)
     ax1 = axes[0]
-    ax1.plot(averages['max_tokens'], averages['server_ttft_sec'], 
-             marker='o', linewidth=2, markersize=8, color='#2E86AB', label='TTFT')
-    ax1.set_ylabel('Time To First Token (s)', fontsize=12)
-    ax1.set_title('Average TTFT', fontsize=13, fontweight='bold')
+    ax1.plot(averages['max_tokens'], averages['prefill_time_ms'], 
+             marker='o', linewidth=2, markersize=8, color='#2E86AB', label='Prefill Time')
+    ax1.set_ylabel('Prefill Time (ms)', fontsize=12)
+    ax1.set_title('Average Prefill Time', fontsize=13, fontweight='bold')
     ax1.grid(True, alpha=0.3)
     ax1.legend()
     
