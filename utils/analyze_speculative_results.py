@@ -270,6 +270,95 @@ def print_evaluation_time_summary(total_times: pd.DataFrame):
               f"{int(row['num_samples']):<10}")
 
 
+def compute_acceptance_rate(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Compute average acceptance rate for each draft step size.
+    
+    Acceptance rate is the ratio of accepted draft tokens to total draft tokens.
+    Only available when speculative decoding is enabled (draft_n > 0).
+    
+    Args:
+        df: DataFrame with all results (must contain 'acceptance_rate' column)
+        
+    Returns:
+        DataFrame with draft_steps and avg_acceptance_rate
+    """
+    # Filter rows where acceptance_rate is available (not NaN)
+    df_with_acceptance = df[df['acceptance_rate'].notna()].copy()
+    
+    if len(df_with_acceptance) == 0:
+        raise ValueError("No acceptance_rate data found. Ensure speculative decoding is enabled.")
+    
+    # Group by draft_steps and compute average acceptance rate
+    acceptance_stats = df_with_acceptance.groupby('draft_steps').agg({
+        'acceptance_rate': ['mean', 'std', 'count']
+    }).reset_index()
+    
+    # Flatten column names
+    acceptance_stats.columns = ['draft_steps', 'avg_acceptance_rate', 'std_acceptance_rate', 'num_samples']
+    
+    # Sort by draft_steps
+    acceptance_stats = acceptance_stats.sort_values('draft_steps')
+    
+    return acceptance_stats
+
+
+def plot_acceptance_rate(acceptance_stats: pd.DataFrame, output_file: str = None):
+    """
+    Plot average acceptance rate vs draft step size.
+    
+    Args:
+        acceptance_stats: DataFrame with draft_steps and avg_acceptance_rate
+        output_file: Optional path to save the plot
+    """
+    draft_steps = acceptance_stats['draft_steps'].values
+    avg_acceptance = acceptance_stats['avg_acceptance_rate'].values
+    std_acceptance = acceptance_stats['std_acceptance_rate'].values
+    
+    # Create figure
+    fig, ax = plt.subplots(figsize=(10, 6))
+    
+    # Plot bar chart with error bars
+    bars = ax.bar(draft_steps.astype(str), avg_acceptance, 
+                   color='#2ecc71', alpha=0.8, edgecolor='black', linewidth=1.5, width=0.6,
+                   yerr=std_acceptance, capsize=5, error_kw={'linewidth': 2, 'ecolor': '#34495e'})
+    
+    ax.set_xlabel('Draft Steps (n_max)', fontsize=12, fontweight='bold')
+    ax.set_ylabel('Average Acceptance Rate', fontsize=12, fontweight='bold')
+    ax.set_title('Speculative Decoding: Acceptance Rate vs Draft Step Size', fontsize=14, fontweight='bold')
+    ax.grid(True, alpha=0.3, axis='y')
+    
+    # Add value labels on top of bars
+    for i, (bar, acceptance, std) in enumerate(zip(bars, avg_acceptance, std_acceptance)):
+        height = bar.get_height()
+        label = f'{acceptance:.3f}\n±{std:.3f}'
+        ax.text(bar.get_x() + bar.get_width()/2., height + 0.01,
+                label, ha='center', va='bottom', fontsize=9, fontweight='bold')
+    
+    # Set y-axis limit to accommodate labels (acceptance rate is between 0 and 1, add space for labels)
+    ax.set_ylim(0, 1.15)
+    
+    plt.tight_layout()
+    
+    if output_file:
+        plt.savefig(output_file, dpi=300, bbox_inches='tight')
+        print(f"\nPlot saved to: {output_file}")
+    else:
+        plt.show()
+
+
+def print_acceptance_rate_summary(acceptance_stats: pd.DataFrame):
+    """Print summary of acceptance rates."""
+    print("\nAcceptance Rate by Draft Step Size")
+    print(f"{'Draft Steps':<12} {'Avg Accept Rate':<18} {'Std Dev':<18} {'Samples':<10}")
+    
+    for _, row in acceptance_stats.iterrows():
+        print(f"{int(row['draft_steps']):<12} "
+              f"{row['avg_acceptance_rate']:<18.4f} "
+              f"{row['std_acceptance_rate']:<18.4f} "
+              f"{int(row['num_samples']):<10}")
+
+
 def main():
     """Main function to analyze and plot speculative decoding results."""
     results_dir = "results/speculative_performance"

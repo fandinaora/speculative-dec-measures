@@ -6,8 +6,12 @@ import subprocess
 import tempfile
 import os
 import textwrap
+import logging
 from typing import Dict, Any, Optional, List
 from enum import Enum
+
+# Configure logging
+logger = logging.getLogger(__name__)
 
 
 class Metric(str, Enum):
@@ -116,7 +120,7 @@ def bleu_score(generated: str, ground_truth: str) -> float:
         ground_truth: Ground truth code string
         
     Returns:
-        BLEU score between 0.0 and 1.0, or 0.0 if nltk is not available
+        BLEU score between 0.0 and 1.0, if nltk is not available try sacrebleu
     """
     try:
         from nltk.translate.bleu_score import sentence_bleu
@@ -138,17 +142,24 @@ def bleu_score(generated: str, ground_truth: str) -> float:
         return float(score)
     except ImportError:
         # nltk not installed, try alternative
+        logger.warning("nltk library not available for BLEU score calculation. Trying sacrebleu as fallback...")
         try:
             from sacrebleu import BLEU
             bleu = BLEU()
             score = bleu.sentence_score(generated, [ground_truth])
+            logger.info("Using sacrebleu for BLEU score calculation")
             return score.score / 100.0  # Convert to 0-1 scale
         except ImportError:
             # Neither library available
+            logger.error("Neither nltk nor sacrebleu libraries are available. BLEU score calculation disabled. Returning 0.0")
+            return 0.0
+        except Exception as e:
+            # Error in sacrebleu calculation
+            logger.error(f"Error calculating BLEU score with sacrebleu: {str(e)}. Returning 0.0")
             return 0.0
     except Exception as e:
         # Error in calculation (e.g., missing NLTK resources)
-        # Silently return 0.0 - the warning is already printed by NLTK
+        logger.error(f"Error calculating BLEU score with nltk: {str(e)}. Returning 0.0")
         return 0.0
 
 

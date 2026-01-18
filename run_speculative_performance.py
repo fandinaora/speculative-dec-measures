@@ -11,6 +11,7 @@ from utils.analyze_speculative_results import (
     plot_evaluation_time
 )
 from pathlib import Path
+from utils.logging_config import setup_logging
 
 
 def parse_args():
@@ -122,6 +123,14 @@ def parse_args():
         help="Disable generating plots"
     )
     
+    # Logging options
+    parser.add_argument(
+        '--log_file',
+        type=str,
+        default=None,
+        help="Path to log file (default: {output_dir}/{experiment_name}/{experiment_name}.log)"
+    )
+    
     return parser.parse_args()
 
 
@@ -143,6 +152,13 @@ if __name__ == "__main__":
             "speculative.p_min": args.spec_p_min
         }
     }
+    
+    # Setup logging
+    setup_logging(
+        log_file=args.log_file,
+        experiment_name=args.experiment_name,
+        output_dir=args.output_dir
+    )
     
     # Create experiment instance
     experiment = PerformanceExperiment(**config)

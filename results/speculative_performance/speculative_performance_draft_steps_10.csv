@@ -1,7 +1,7 @@
 sample_id,draft_steps,max_tokens,temperature,acceptance_rate,draft_n,draft_n_accepted,generated_content,latency_sec_per_token,prefill_time_sec,prompt,throughput_tokens_per_sec,tokens_generated,total_generation_time_sec
-0,10,512,0.0,1.0,30,30,"```python
+0,10,512,0,1,30,30,"```python
 return sum(lst[i] for i in range(1, len(lst), 2) if lst[i] % 2 == 0)
-```",0.1460614705882353,0.27386099999999997,"You are a code completion assistant. Read the following code and complete the function.
+```",0.146061471,0.273861,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -16,9 +16,9 @@ def add(lst):
 
 
 Complete the function: 
-",6.846432505250609,34,4.96609
-1,10,512,0.0,1.0,40,40,"def parse_music(music_string: str) -> List[int]:
-    return [4 if note == 'o' else 2 if note == 'o|' else 1 for note in music_string.split()]",0.1497269111111111,0.265093,"You are a code completion assistant. Read the following code and complete the function.
+",6.846432505,34,4.96609
+1,10,512,0,1,40,40,"def parse_music(music_string: str) -> List[int]:
+    return [4 if note == 'o' else 2 if note == 'o|' else 1 for note in music_string.split()]",0.149726911,0.265093,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -41,8 +41,8 @@ def parse_music(music_string: str) -> List[int]:
 
 
 Complete the function: 
-",6.678826087969639,45,6.737711
-2,10,512,0.0,0.6666666666666666,6,4,number - int(number),0.18146166666666666,0.26579,"You are a code completion assistant. Read the following code and complete the function.
+",6.678826088,45,6.737711
+2,10,512,0,0.666666667,6,4,number - int(number),0.181461667,0.26579,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -60,8 +60,8 @@ def truncate_number(number: float) -> float:
 
 
 Complete the function: 
-",5.510805771650578,6,1.08877
-3,10,512,0.0,1.0,90,90,"def fibfib(n: int):
+",5.510805772,6,1.08877
+3,10,512,0,1,90,90,"def fibfib(n: int):
     if n == 0:
         return 0
     elif n == 1:
@@ -72,7 +72,7 @@ Complete the function:
         a, b, c = 0, 0, 1
         for _ in range(3, n + 1):
             a, b, c = b, c, a + b + c
-        return c",0.16317421000000001,0.29462,"You are a code completion assistant. Read the following code and complete the function.
+        return c",0.16317421,0.29462,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -95,8 +95,8 @@ def fibfib(n: int):
 
 
 Complete the function: 
-",6.128419435890022,100,16.317421
-4,10,512,0.0,1.0,44,44,"```python
+",6.128419436,100,16.317421
+4,10,512,0,1,44,44,"```python
 count = 0
 for i in range(n):
     if i % 11 == 0 or i % 13 == 0:
@@ -120,8 +120,8 @@ def fizz_buzz(n: int):
 
 
 Complete the function: 
-",6.085543511453541,50,8.216192999999999
-5,10,512,0.0,1.0,100,100,"def fib4(n: int):
+",6.085543511,50,8.216193
+5,10,512,0,1,100,100,"def fib4(n: int):
     if n == 0 or n == 1:
         return 0
     if n == 2:
@@ -131,7 +131,7 @@ Complete the function:
     a, b, c, d = 0, 0, 2, 0
     for _ in range(4, n + 1):
         a, b, c, d = b, c, d, a + b + c + d
-    return d",0.16360406306306305,0.301281,"You are a code completion assistant. Read the following code and complete the function.
+    return d",0.163604063,0.301281,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -155,8 +155,8 @@ def fib4(n: int):
 
 
 Complete the function: 
-",6.1123176361123654,111,18.160051
-6,10,512,0.0,0.9375,16,15,return [s for s in strings if substring in s],0.17361255555555555,0.26458499999999996,"You are a code completion assistant. Read the following code and complete the function.
+",6.112317636,111,18.160051
+6,10,512,0,0.9375,16,15,return [s for s in strings if substring in s],0.173612556,0.264585,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -173,10 +173,10 @@ def filter_by_substring(strings: List[str], substring: str) -> List[str]:
 
 
 Complete the function: 
-",5.759952077198718,18,3.1250259999999996
-7,10,512,0.0,1.0,30,30,"```python
+",5.759952077,18,3.125026
+7,10,512,0,1,30,30,"```python
 return [sorted(l[i] for i in range(0, len(l), 2)), l[1::2]][1]
-```",0.13049152941176473,0.21751099999999998,"You are a code completion assistant. Read the following code and complete the function.
+```",0.130491529,0.217511,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -194,8 +194,8 @@ def sort_even(l: list):
 
 
 Complete the function: 
-",7.6633326661726064,34,4.436712000000001
-8,10,512,0.0,1.0,54,54,"def vowels_count(s):
+",7.663332666,34,4.436712
+8,10,512,0,1,54,54,"def vowels_count(s):
     count = 0
     s = s.lower()
     for char in s:
@@ -203,7 +203,7 @@ Complete the function:
             count += 1
     if s[-1] == 'y':
         count += 1
-    return count",0.144174868852459,0.32590399999999997,"You are a code completion assistant. Read the following code and complete the function.
+    return count",0.144174869,0.325904,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -227,8 +227,8 @@ def vowels_count(s):
 
 
 Complete the function: 
-",6.936021568525563,61,8.794666999999999
-9,10,512,0.0,1.0,4,4,return max(l),0.11301533333333333,0.23741800000000002,"You are a code completion assistant. Read the following code and complete the function.
+",6.936021569,61,8.794667
+9,10,512,0,1,4,4,return max(l),0.113015333,0.237418,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -244,11 +244,11 @@ def max_element(l: list):
 
 
 Complete the function: 
-",8.848356860131075,6,0.678092
-10,10,512,0.0,0.8888888888888888,36,32,"def starts_one_ends(n):
+",8.84835686,6,0.678092
+10,10,512,0,0.888888889,36,32,"def starts_one_ends(n):
     if n == 1:
         return 1
-    return 2 * (10 ** (n - 1)) - 2",0.13222059459459462,0.28258999999999995,"You are a code completion assistant. Read the following code and complete the function.
+    return 2 * (10 ** (n - 1)) - 2",0.132220595,0.28259,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -261,10 +261,10 @@ def starts_one_ends(n):
 
 
 Complete the function: 
-",7.563118310472957,37,4.892162
-11,10,512,0.0,1.0,25,25,"def decimal_to_binary(decimal):
+",7.56311831,37,4.892162
+11,10,512,0,1,25,25,"def decimal_to_binary(decimal):
     binary = bin(decimal)[2:]
-    return f""db{binary}db""",0.12156668965517242,0.204652,"You are a code completion assistant. Read the following code and complete the function.
+    return f""db{binary}db""",0.12156669,0.204652,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -284,15 +284,15 @@ def decimal_to_binary(decimal):
 
 
 Complete the function: 
-",8.225937572508801,29,3.525434
-12,10,512,0.0,0.9791666666666666,48,47,"def strange_sort_list(lst):
+",8.225937573,29,3.525434
+12,10,512,0,0.979166667,48,47,"def strange_sort_list(lst):
     sorted_lst = sorted(lst)
     result = []
     while sorted_lst:
         result.append(sorted_lst.pop(0))
         if sorted_lst:
             result.append(sorted_lst.pop(-1))
-    return result",0.1259004814814815,0.22927899999999998,"You are a code completion assistant. Read the following code and complete the function.
+    return result",0.125900481,0.229279,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -311,12 +311,12 @@ def strange_sort_list(lst):
 
 
 Complete the function: 
-",7.942781379649358,54,6.7986260000000005
-13,10,512,0.0,1.0,35,35,"def next_smallest(lst):
+",7.94278138,54,6.798626
+13,10,512,0,1,35,35,"def next_smallest(lst):
     unique_elements = sorted(set(lst))
     if len(unique_elements) < 2:
         return None
-    return unique_elements[1]",0.11828040000000001,0.216695,"You are a code completion assistant. Read the following code and complete the function.
+    return unique_elements[1]",0.1182804,0.216695,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -335,9 +335,9 @@ def next_smallest(lst):
 
 
 Complete the function: 
-",8.45448611942469,40,4.731216000000001
-14,10,512,0.0,0.9615384615384616,26,25,"def will_it_fly(q, w):
-    return q == q[::-1] and sum(q) <= w",0.1237403448275862,0.201298,"You are a code completion assistant. Read the following code and complete the function.
+",8.454486119,40,4.731216
+14,10,512,0,0.961538462,26,25,"def will_it_fly(q, w):
+    return q == q[::-1] and sum(q) <= w",0.123740345,0.201298,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -363,8 +363,8 @@ def will_it_fly(q,w):
 
 
 Complete the function: 
-",8.081438607540262,29,3.5884699999999996
-15,10,512,0.0,1.0,6,6,s.split(),0.11562824999999999,0.230453,"You are a code completion assistant. Read the following code and complete the function.
+",8.081438608,29,3.58847
+15,10,512,0,1,6,6,s.split(),0.11562825,0.230453,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -381,8 +381,8 @@ def words_string(s):
 
 
 Complete the function: 
-",8.648405558330253,8,0.9250259999999999
-16,10,512,0.0,1.0,60,60,"def make_a_pile(n):
+",8.648405558,8,0.925026
+16,10,512,0,1,60,60,"def make_a_pile(n):
     levels = []
     current_stones = n
     for i in range(n):
@@ -391,7 +391,7 @@ Complete the function:
             current_stones += 2
         else:
             current_stones += 2
-    return levels",0.1181251791044776,0.211801,"You are a code completion assistant. Read the following code and complete the function.
+    return levels",0.118125179,0.211801,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -413,13 +413,13 @@ def make_a_pile(n):
 
 
 Complete the function: 
-",8.465595629832102,67,7.914387
-17,10,512,0.0,1.0,40,40,"def circular_shift(x, shift):
+",8.46559563,67,7.914387
+17,10,512,0,1,40,40,"def circular_shift(x, shift):
     s = str(x)
     n = len(s)
     if shift >= n:
         return s[::-1]
-    return s[-shift:] + s[:-shift]",0.11713664444444445,0.248361,"You are a code completion assistant. Read the following code and complete the function.
+    return s[-shift:] + s[:-shift]",0.117136644,0.248361,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -436,15 +436,15 @@ def circular_shift(x, shift):
 
 
 Complete the function: 
-",8.53703812963739,45,5.271149
-18,10,512,0.0,1.0,38,38,"```python
+",8.53703813,45,5.271149
+18,10,512,0,1,38,38,"```python
 result = []
 current_max = numbers[0]
 for number in numbers:
     if number > current_max:
         current_max = number
     result.append(current_max)
-```",0.11862379069767442,0.22111,"You are a code completion assistant. Read the following code and complete the function.
+```",0.118623791,0.22111,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -460,8 +460,8 @@ def rolling_max(numbers: List[int]) -> List[int]:
 
 
 Complete the function: 
-",8.430012176466425,43,5.100823
-19,10,512,0.0,0.9375,16,15,return [s for s in strings if s.startswith(prefix)],0.12685972222222222,0.204338,"You are a code completion assistant. Read the following code and complete the function.
+",8.430012176,43,5.100823
+19,10,512,0,0.9375,16,15,return [s for s in strings if s.startswith(prefix)],0.126859722,0.204338,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -478,8 +478,8 @@ def filter_by_prefix(strings: List[str], prefix: str) -> List[str]:
 
 
 Complete the function: 
-",7.8827226048018915,18,2.2834749999999997
-20,10,512,0.0,1.0,10,10,return len(set(string.lower())),0.12212692307692308,0.201598,"You are a code completion assistant. Read the following code and complete the function.
+",7.882722605,18,2.283475
+20,10,512,0,1,10,10,return len(set(string.lower())),0.122126923,0.201598,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -495,8 +495,8 @@ def count_distinct_characters(string: str) -> int:
 
 
 Complete the function: 
-",8.188202689509652,13,1.58765
-21,10,512,0.0,0.9875,80,79,"def count_up_to(n):
+",8.18820269,13,1.58765
+21,10,512,0,0.9875,80,79,"def count_up_to(n):
     def is_prime(num):
         if num < 2:
             return False
@@ -509,7 +509,7 @@ Complete the function:
     for i in range(2, n):
         if is_prime(i):
             primes.append(i)
-    return primes",0.11987811363636364,0.21268299999999998,"You are a code completion assistant. Read the following code and complete the function.
+    return primes",0.119878114,0.212683,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -528,8 +528,8 @@ def count_up_to(n):
 
 
 Complete the function: 
-",8.341806270270354,88,10.549273999999999
-22,10,512,0.0,0.9848484848484849,66,65,"```python
+",8.34180627,88,10.549274
+22,10,512,0,0.984848485,66,65,"```python
 i = 0
 n = len(nums)
 min_sum = float('inf')
@@ -538,7 +538,7 @@ for j in range(n):
     if sum(nums[i:j+1]) > 0:
         i = j + 1
 return min_sum
-```",0.15076020547945204,0.20702099999999998,"You are a code completion assistant. Read the following code and complete the function.
+```",0.150760205,0.207021,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -554,14 +554,14 @@ def minSubArraySum(nums):
 
 
 Complete the function: 
-",6.633050126323259,73,11.005495000000002
-23,10,512,0.0,1.0,50,50,"def is_bored(S):
+",6.633050126,73,11.005495
+23,10,512,0,1,50,50,"def is_bored(S):
     count = 0
     sentences = S.split('. ') + S.split('? ') + S.split('! ')
     for sentence in sentences:
         if sentence.strip().startswith('I '):
             count += 1
-    return count",0.13751958928571428,0.24814,"You are a code completion assistant. Read the following code and complete the function.
+    return count",0.137519589,0.24814,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -581,8 +581,8 @@ def is_bored(S):
 
 
 Complete the function: 
-",7.27169129281192,56,7.701097
-24,10,512,0.0,1.0,4,4,return ''.join(strings),0.11899883333333333,0.229745,"You are a code completion assistant. Read the following code and complete the function.
+",7.271691293,56,7.701097
+24,10,512,0,1,4,4,return ''.join(strings),0.118998833,0.229745,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -599,14 +599,14 @@ def concatenate(strings: List[str]) -> str:
 
 
 Complete the function: 
-",8.403443731241062,6,0.7139930000000001
-25,10,512,0.0,1.0,33,33,"```python
+",8.403443731,6,0.713993
+25,10,512,0,1,33,33,"```python
 if n > m:
     -1
 else:
     avg = round((n + m) / 2)
     bin(avg)[2:]
-```",0.15189368421052632,0.229198,"You are a code completion assistant. Read the following code and complete the function.
+```",0.151893684,0.229198,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -625,10 +625,10 @@ def rounded_avg(n, m):
 
 
 Complete the function: 
-",6.5835522075690065,38,5.77196
-26,10,512,0.0,1.0,19,19,"```python
+",6.583552208,38,5.77196
+26,10,512,0,1,19,19,"```python
 return n * (n + 1) // 2
-```",0.12153918181818181,0.23458500000000002,"You are a code completion assistant. Read the following code and complete the function.
+```",0.121539182,0.234585,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -650,8 +650,8 @@ def sum_to_n(n: int):
 
 
 Complete the function: 
-",8.227799340429685,22,2.673862
-27,10,512,0.0,1.0,125,125,"def is_multiply_prime(a):
+",8.22779934,22,2.673862
+27,10,512,0,1,125,125,"def is_multiply_prime(a):
     def is_prime(n):
         if n < 2:
             return False
@@ -667,7 +667,7 @@ Complete the function:
             for k in primes:
                 if i * j * k == a:
                     prime_combinations.append((i, j, k))
-    return len(prime_combinations) > 0",0.12584928057553957,0.318024,"You are a code completion assistant. Read the following code and complete the function.
+    return len(prime_combinations) > 0",0.125849281,0.318024,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -683,10 +683,10 @@ def is_multiply_prime(a):
 
 
 Complete the function: 
-",7.9460128451013405,139,17.49305
-28,10,512,0.0,0.975,40,39,"def string_xor(a: str, b: str) -> str:
+",7.946012845,139,17.49305
+28,10,512,0,0.975,40,39,"def string_xor(a: str, b: str) -> str:
     result = ''.join(str(int(a[i]) ^ int(b[i])) for i in range(len(a)))
-    return result",0.12657653333333335,0.211283,"You are a code completion assistant. Read the following code and complete the function.
+    return result",0.126576533,0.211283,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -702,10 +702,10 @@ def string_xor(a: str, b: str) -> str:
 
 
 Complete the function: 
-",7.900358570941006,45,5.695944000000001
-29,10,512,0.0,1.0,20,20,"```python
+",7.900358571,45,5.695944
+29,10,512,0,1,20,20,"```python
 ''.join([char for char in text if char not in 'aeiouAEIOU'])
-```",0.11790362499999998,0.21068299999999998,"You are a code completion assistant. Read the following code and complete the function.
+```",0.117903625,0.210683,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -730,9 +730,9 @@ def remove_vowels(text):
 
 
 Complete the function: 
-",8.481503431298233,24,2.829687
-30,10,512,0.0,1.0,30,30,"def count_nums(arr):
-    return sum([1 for x in arr if sum(int(d) for d in str(x).lstrip('-')) > 0])",0.13565011764705884,0.257075,"You are a code completion assistant. Read the following code and complete the function.
+",8.481503431,24,2.829687
+30,10,512,0,1,30,30,"def count_nums(arr):
+    return sum([1 for x in arr if sum(int(d) for d in str(x).lstrip('-')) > 0])",0.135650118,0.257075,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -750,15 +750,15 @@ def count_nums(arr):
 
 
 Complete the function: 
-",7.371906617890663,34,4.612104
-31,10,512,0.0,1.0,53,53,"def prime_length(string):
+",7.371906618,34,4.612104
+31,10,512,0,1,53,53,"def prime_length(string):
     length = len(string)
     if length < 2:
         return False
     for i in range(2, int(length**0.5) + 1):
         if length % i == 0:
             return False
-    return True",0.13225141666666668,0.223415,"You are a code completion assistant. Read the following code and complete the function.
+    return True",0.132251417,0.223415,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -775,15 +775,15 @@ def prime_length(string):
 
 
 Complete the function: 
-",7.561355675459053,60,7.935085
-32,10,512,0.0,1.0,59,59,"def select_words(s, n):
+",7.561355675,60,7.935085
+32,10,512,0,1,59,59,"def select_words(s, n):
     words = s.split()
     result = []
     for word in words:
         consonants = sum(1 for char in word if char.lower() in 'bcdfghjklmnpqrstvwxyz')
         if consonants == n:
             result.append(word)
-    return result",0.12269667164179104,0.212064,"You are a code completion assistant. Read the following code and complete the function.
+    return result",0.122696672,0.212064,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -804,13 +804,13 @@ def select_words(s, n):
 
 
 Complete the function: 
-",8.15018033186318,67,8.220677
-33,10,512,0.0,1.0,40,40,"def change_base(x: int, base: int):
+",8.150180332,67,8.220677
+33,10,512,0,1,40,40,"def change_base(x: int, base: int):
     result = ''
     while x > 0:
         result = str(x % base) + result
         x = x // base
-    return result",0.12055473333333333,0.215409,"You are a code completion assistant. Read the following code and complete the function.
+    return result",0.120554733,0.215409,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -830,12 +830,12 @@ def change_base(x: int, base: int):
 
 
 Complete the function: 
-",8.294987449683989,45,5.424963
-34,10,512,0.0,1.0,90,90,"def by_length(arr):
+",8.29498745,45,5.424963
+34,10,512,0,1,90,90,"def by_length(arr):
     result = [str(num) for num in arr if 1 <= num <= 9]
     result.sort()
     result.reverse()
-    return [{""1"": ""One"", ""2"": ""Two"", ""3"": ""Three"", ""4"": ""Four"", ""5"": ""Five"", ""6"": ""Six"", ""7"": ""Seven"", ""8"": ""Eight"", ""9"": ""Nine""}[str(num)] for num in result]",0.1320923,0.22997900000000002,"You are a code completion assistant. Read the following code and complete the function.
+    return [{""1"": ""One"", ""2"": ""Two"", ""3"": ""Three"", ""4"": ""Four"", ""5"": ""Five"", ""6"": ""Six"", ""7"": ""Seven"", ""8"": ""Eight"", ""9"": ""Nine""}[str(num)] for num in result]",0.1320923,0.229979,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -865,10 +865,10 @@ def by_length(arr):
 
 
 Complete the function: 
-",7.5704639861672485,100,13.20923
-35,10,512,0.0,1.0,18,18,"```python
+",7.570463986,100,13.20923
+35,10,512,0,1,18,18,"```python
 l[::3] = sorted(l[::3])
-```",0.12738609523809524,0.228791,"You are a code completion assistant. Read the following code and complete the function.
+```",0.127386095,0.228791,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -886,8 +886,8 @@ def sort_third(l: list):
 
 
 Complete the function: 
-",7.850150349070018,21,2.6751080000000003
-36,10,512,0.0,1.0,12,12,"return ' '.join(map(str, range(n + 1)))",0.12026233333333333,0.211898,"You are a code completion assistant. Read the following code and complete the function.
+",7.850150349,21,2.675108
+36,10,512,0,1,12,12,"return ' '.join(map(str, range(n + 1)))",0.120262333,0.211898,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -903,9 +903,9 @@ def string_sequence(n: int) -> str:
 
 
 Complete the function: 
-",8.315155479548876,15,1.8039349999999998
-37,10,512,0.0,1.0,30,30,"def flip_case(string: str) -> str:
-    return ''.join([char.lower() if char.isupper() else char.upper() for char in string])",0.12310514705882351,0.220455,"You are a code completion assistant. Read the following code and complete the function.
+",8.31515548,15,1.803935
+37,10,512,0,1,30,30,"def flip_case(string: str) -> str:
+    return ''.join([char.lower() if char.isupper() else char.upper() for char in string])",0.123105147,0.220455,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -919,8 +919,8 @@ def flip_case(string: str) -> str:
 
 
 Complete the function: 
-",8.123137203371103,34,4.185575
-38,10,512,0.0,1.0,18,18,"return [string[:i] for i in range(1, len(string)+1)]",0.12421052380952381,0.223595,"You are a code completion assistant. Read the following code and complete the function.
+",8.123137203,34,4.185575
+38,10,512,0,1,18,18,"return [string[:i] for i in range(1, len(string)+1)]",0.124210524,0.223595,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -935,8 +935,8 @@ def all_prefixes(string: str) -> List[str]:
 
 
 Complete the function: 
-",8.0508476200736,21,2.608421
-39,10,512,0.0,1.0,10,10,"return [value for value in values if isinstance(value, int)]",0.14659099999999997,0.21937299999999998,"You are a code completion assistant. Read the following code and complete the function.
+",8.05084762,21,2.608421
+39,10,512,0,1,10,10,"return [value for value in values if isinstance(value, int)]",0.146591,0.219373,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -953,11 +953,11 @@ def filter_integers(values: List[Any]) -> List[int]:
 
 
 Complete the function: 
-",6.82170119584422,14,2.0522739999999997
-40,10,512,0.0,1.0,34,34,"def sort_array(arr):
+",6.821701196,14,2.052274
+40,10,512,0,1,34,34,"def sort_array(arr):
     def count_ones(n):
         return bin(n).count('1')
-    return sorted(arr, key=lambda x: (count_ones(x), x))",0.13211697435897435,0.205376,"You are a code completion assistant. Read the following code and complete the function.
+    return sorted(arr, key=lambda x: (count_ones(x), x))",0.132116974,0.205376,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -976,8 +976,8 @@ def sort_array(arr):
 
 
 Complete the function: 
-",7.569050115263049,39,5.152562
-41,10,512,0.0,1.0,10,10,return all(x < t for x in l),0.14209933333333333,0.22911099999999998,"You are a code completion assistant. Read the following code and complete the function.
+",7.569050115,39,5.152562
+41,10,512,0,1,10,10,return all(x < t for x in l),0.142099333,0.229111,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -993,13 +993,13 @@ def below_threshold(l: list, t: int):
 
 
 Complete the function: 
-",7.0373306935523985,12,1.705192
-42,10,512,0.0,0.9848484848484849,66,65,"def get_closest_vowel(word):
+",7.037330694,12,1.705192
+42,10,512,0,0.984848485,66,65,"def get_closest_vowel(word):
     vowels = ""aeiouAEIOU""
     for i in range(len(word)-2, -1, -1):
         if word[i] in vowels and word[i-1] not in vowels and word[i+1] not in vowels:
             return word[i]
-    return """"",0.14613293243243242,0.239627,"You are a code completion assistant. Read the following code and complete the function.
+    return """"",0.146132932,0.239627,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -1022,10 +1022,10 @@ def get_closest_vowel(word):
 
 
 Complete the function: 
-",6.8430844666883734,74,10.813837
-43,10,512,0.0,1.0,25,25,"```python
+",6.843084467,74,10.813837
+43,10,512,0,1,25,25,"```python
 return any(a + b == 0 for i, a in enumerate(l) for b in l[i+1:])
-```",0.21143737931034481,0.260596,"You are a code completion assistant. Read the following code and complete the function.
+```",0.211437379,0.260596,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -1050,8 +1050,8 @@ def pairs_sum_to_zero(l):
 
 
 Complete the function: 
-",4.729532702598503,29,6.131684
-44,10,512,0.0,0.9803921568627451,102,100,"def compare_one(a, b):
+",4.729532703,29,6.131684
+44,10,512,0,0.980392157,102,100,"def compare_one(a, b):
     if isinstance(a, str):
         a = a.replace(',', '.')
     if isinstance(b, str):
@@ -1060,7 +1060,7 @@ Complete the function:
     b = float(b) if isinstance(b, (int, float)) else float(b.replace(',', '.'))
     if a == b:
         return None
-    return max(a, b, key=lambda x: (isinstance(x, str), x))",0.13158937499999998,0.34194,"You are a code completion assistant. Read the following code and complete the function.
+    return max(a, b, key=lambda x: (isinstance(x, str), x))",0.131589375,0.34194,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -1080,10 +1080,10 @@ def compare_one(a, b):
 
 
 Complete the function: 
-",7.599397747728493,112,14.738010000000001
-45,10,512,0.0,0.9523809523809523,21,20,"```python
+",7.599397748,112,14.73801
+45,10,512,0,0.952380952,21,20,"```python
 return sum(ord(c) for c in s if c.isupper())
-```",0.15706399999999998,0.242888,"You are a code completion assistant. Read the following code and complete the function.
+```",0.157064,0.242888,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -1104,8 +1104,8 @@ def digitSum(s):
 
 
 Complete the function: 
-",6.366831355371059,24,3.769536
-46,10,512,0.0,1.0,94,94,"def exchange(lst1, lst2):
+",6.366831355,24,3.769536
+46,10,512,0,1,94,94,"def exchange(lst1, lst2):
     for i in range(len(lst1)):
         if lst1[i] % 2 != 0:
             for j in range(len(lst2)):
@@ -1115,7 +1115,7 @@ Complete the function:
     for num in lst1:
         if num % 2 != 0:
             return ""NO""
-    return ""YES""",0.1913649619047619,0.291663,"You are a code completion assistant. Read the following code and complete the function.
+    return ""YES""",0.191364962,0.291663,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -1136,8 +1136,8 @@ def exchange(lst1, lst2):
 
 
 Complete the function: 
-",5.225617009751648,105,20.093321
-47,10,512,0.0,0.9625,80,77,"def separate_paren_groups(paren_string: str) -> List[str]:
+",5.22561701,105,20.093321
+47,10,512,0,0.9625,80,77,"def separate_paren_groups(paren_string: str) -> List[str]:
     stack = []
     result = []
     current = ''
@@ -1151,7 +1151,7 @@ Complete the function:
             if not stack:
                 result.append(current)
                 current = ''
-    return result",0.15901856976744186,0.2352,"You are a code completion assistant. Read the following code and complete the function.
+    return result",0.15901857,0.2352,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -1169,10 +1169,10 @@ def separate_paren_groups(paren_string: str) -> List[str]:
 
 
 Complete the function: 
-",6.288573727348064,86,13.675597
-48,10,512,0.0,1.0,20,20,"```python
+",6.288573727,86,13.675597
+48,10,512,0,1,20,20,"```python
 return txt and txt[-1].isalpha() and not txt[-2:].isspace()
-```",0.23049473913043478,0.298323,"You are a code completion assistant. Read the following code and complete the function.
+```",0.230494739,0.298323,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -1193,10 +1193,10 @@ def check_if_last_char_is_a_letter(txt):
 
 
 Complete the function: 
-",4.3384938145339165,23,5.301379
-49,10,512,0.0,1.0,17,17,"```python
+",4.338493815,23,5.301379
+49,10,512,0,1,17,17,"```python
 return sum([int(x)**2 for x in lst])
-```",0.17072194999999998,0.266309,"You are a code completion assistant. Read the following code and complete the function.
+```",0.17072195,0.266309,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -1218,12 +1218,12 @@ def sum_squares(lst):
 
 
 Complete the function: 
-",5.857477611988382,20,3.414439
-50,10,512,0.0,1.0,57,57,"def closest_integer(value):
+",5.857477612,20,3.414439
+50,10,512,0,1,57,57,"def closest_integer(value):
     num = float(value)
     if num - int(num) == 0.5 or int(num) - num == 0.5:
         return int(num) + 1 if num > 0 else int(num) - 1
-    return round(num)",0.12522646875,0.207089,"You are a code completion assistant. Read the following code and complete the function.
+    return round(num)",0.125226469,0.207089,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -1249,9 +1249,9 @@ def closest_integer(value):
 
 
 Complete the function: 
-",7.985532212014882,64,8.014494
-51,10,512,0.0,1.0,30,30,"def unique_digits(x):
-    return sorted([num for num in x if all(digit in '13579' for digit in str(num))])",0.13122573529411763,0.24331899999999998,"You are a code completion assistant. Read the following code and complete the function.
+",7.985532212,64,8.014494
+51,10,512,0,1,30,30,"def unique_digits(x):
+    return sorted([num for num in x if all(digit in '13579' for digit in str(num))])",0.131225735,0.243319,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -1271,10 +1271,10 @@ def unique_digits(x):
 
 
 Complete the function: 
-",7.620456442927824,34,4.4616750000000005
-52,10,512,0.0,1.0,22,22,"```python
+",7.620456443,34,4.461675
+52,10,512,0,1,22,22,"```python
 return sorted([i for i in arr if i >= max(arr[:k])])[-k:]
-```",0.15325346153846156,0.225899,"You are a code completion assistant. Read the following code and complete the function.
+```",0.153253462,0.225899,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -1307,12 +1307,12 @@ def maximum(arr, k):
 
 
 Complete the function: 
-",6.525138094509097,26,3.9845900000000003
-53,10,512,0.0,1.0,93,93,"def sort_numbers(numbers: str) -> str:
+",6.525138095,26,3.98459
+53,10,512,0,1,93,93,"def sort_numbers(numbers: str) -> str:
     num_dict = {'zero': 0, 'one': 1, 'two': 2, 'three': 3, 'four': 4, 'five': 5, 'six': 6, 'seven': 7, 'eight': 8, 'nine': 9}
     nums = numbers.split()
     sorted_nums = sorted(nums, key=lambda x: num_dict[x])
-    return ' '.join(sorted_nums)",0.16938815384615385,0.230956,"You are a code completion assistant. Read the following code and complete the function.
+    return ' '.join(sorted_nums)",0.169388154,0.230956,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -1329,15 +1329,15 @@ def sort_numbers(numbers: str) -> str:
 
 
 Complete the function: 
-",5.90360056056958,104,17.616367999999998
-54,10,512,0.0,1.0,49,49,"```python
+",5.903600561,104,17.616368
+54,10,512,0,1,49,49,"```python
 l.sort()
 n = len(l)
 if n % 2 == 0:
     return (l[n//2 - 1] + l[n//2]) / 2
 else:
     return l[n//2]
-```",0.1717539818181818,0.264755,"You are a code completion assistant. Read the following code and complete the function.
+```",0.171753982,0.264755,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -1353,8 +1353,8 @@ def median(l: list):
 
 
 Complete the function: 
-",5.82228132014195,55,9.446468999999999
-55,10,512,0.0,1.0,47,47,"```python
+",5.82228132,55,9.446469
+55,10,512,0,1,47,47,"```python
 i = 2
 while i * i <= n:
     if n % i:
@@ -1364,7 +1364,7 @@ while i * i <= n:
 if n > 1:
     i = n
 i
-```",0.14450032075471697,0.232172,"You are a code completion assistant. Read the following code and complete the function.
+```",0.144500321,0.232172,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -1380,13 +1380,13 @@ def largest_prime_factor(n: int):
 
 
 Complete the function: 
-",6.920399863315575,53,7.658517
-56,10,512,0.0,0.8636363636363636,44,38,"def find_zero(xs: list):
+",6.920399863,53,7.658517
+56,10,512,0,0.863636364,44,38,"def find_zero(xs: list):
     a = xs[0]
     b = xs[1]
     if a == 0:
         return -b / xs[2]
-    return -b / a",0.21925454545454548,0.229983,"You are a code completion assistant. Read the following code and complete the function.
+    return -b / a",0.219254545,0.229983,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -1416,8 +1416,8 @@ def find_zero(xs: list):
 
 
 Complete the function: 
-",4.5609088647483205,44,9.647200000000002
-57,10,512,0.0,1.0,85,85,"def words_in_sentence(sentence):
+",4.560908865,44,9.6472
+57,10,512,0,1,85,85,"def words_in_sentence(sentence):
     def is_prime(n):
         if n < 2:
             return False
@@ -1431,7 +1431,7 @@ Complete the function:
     for word in words:
         if is_prime(len(word)):
             result.append(word)
-    return ' '.join(result)",0.1740464210526316,0.242042,"You are a code completion assistant. Read the following code and complete the function.
+    return ' '.join(result)",0.174046421,0.242042,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -1459,9 +1459,9 @@ def words_in_sentence(sentence):
 
 
 Complete the function: 
-",5.745593583321087,95,16.53441
-58,10,512,0.0,1.0,30,30,"def order_by_points(nums):
-    return sorted(nums, key=lambda x: (sum(int(d) for d in str(abs(x))), nums.index(x)))",0.13526155882352942,0.566886,"You are a code completion assistant. Read the following code and complete the function.
+",5.745593583,95,16.53441
+58,10,512,0,1,30,30,"def order_by_points(nums):
+    return sorted(nums, key=lambda x: (sum(int(d) for d in str(abs(x))), nums.index(x)))",0.135261559,0.566886,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -1480,8 +1480,8 @@ def order_by_points(nums):
 
 
 Complete the function: 
-",7.393083509444556,34,4.598893
-59,10,512,0.0,1.0,75,75,"def match_parens(lst):
+",7.393083509,34,4.598893
+59,10,512,0,1,75,75,"def match_parens(lst):
     for i in range(2):
         stack = []
         balanced = True
@@ -1495,7 +1495,7 @@ Complete the function:
                 stack.pop()
         if balanced and not stack:
             return 'Yes'
-    return 'No'",0.14780417857142855,0.25339,"You are a code completion assistant. Read the following code and complete the function.
+    return 'No'",0.147804179,0.25339,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -1518,10 +1518,10 @@ def match_parens(lst):
 
 
 Complete the function: 
-",6.765708585949992,84,12.415550999999999
-60,10,512,0.0,1.0,29,29,"```python
+",6.765708586,84,12.415551
+60,10,512,0,1,29,29,"```python
 return sum(num for i, num in enumerate(lst) if i % 2 == 0 and num % 2 == 1)
-```",0.19089130303030302,0.34672000000000003,"You are a code completion assistant. Read the following code and complete the function.
+```",0.190891303,0.34672,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -1538,11 +1538,11 @@ def solution(lst):
 
 
 Complete the function: 
-",5.238583341019235,33,6.2994129999999995
-61,10,512,0.0,1.0,16,16,"```python
+",5.238583341,33,6.299413
+61,10,512,0,1,16,16,"```python
 numbers.sort()
 return (numbers[0], numbers[1])
-```",0.1382331578947368,0.241428,"You are a code completion assistant. Read the following code and complete the function.
+```",0.138233158,0.241428,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -1560,8 +1560,8 @@ def find_closest_elements(numbers: List[float]) -> Tuple[float, float]:
 
 
 Complete the function: 
-",7.234154346394155,19,2.62643
-62,10,512,0.0,1.0,109,109,"def encode(message):
+",7.234154346,19,2.62643
+62,10,512,0,1,109,109,"def encode(message):
     vowels = ""aeiou""
     result = """"
     for char in message:
@@ -1575,7 +1575,7 @@ Complete the function:
                 result += char.upper()
             else:
                 result += char.lower()
-    return result",0.16901902479338843,0.245292,"You are a code completion assistant. Read the following code and complete the function.
+    return result",0.169019025,0.245292,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -1597,15 +1597,15 @@ def encode(message):
 
 
 Complete the function: 
-",5.916493727392027,121,20.451302
-63,10,512,0.0,1.0,49,49,"```python
+",5.916493727,121,20.451302
+63,10,512,0,1,49,49,"```python
 result = []
 for i, row in enumerate(lst):
     for j, val in enumerate(row):
         if val == x:
             result.append((i, j))
 result.sort(key=lambda x: (x[0], -x[1]))
-```",0.15763576363636364,0.262834,"You are a code completion assistant. Read the following code and complete the function.
+```",0.157635764,0.262834,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -1633,12 +1633,12 @@ def get_row(lst, x):
 
 
 Complete the function: 
-",6.343738101886662,55,8.669967
-64,10,512,0.0,1.0,38,38,"def cycpattern_check(a, b):
+",6.343738102,55,8.669967
+64,10,512,0,1,38,38,"def cycpattern_check(a, b):
     for i in range(len(b)):
         if b in a or b[i:] + b[:i] in a:
             return True
-    return False",0.14589406976744188,0.272836,"You are a code completion assistant. Read the following code and complete the function.
+    return False",0.14589407,0.272836,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -1656,8 +1656,8 @@ def cycpattern_check(a , b):
 
 
 Complete the function: 
-",6.854288194126195,43,6.273445
-65,10,512,0.0,1.0,10,10,return 0.5 * a * h,0.16028964285714284,0.247867,"You are a code completion assistant. Read the following code and complete the function.
+",6.854288194,43,6.273445
+65,10,512,0,1,10,10,return 0.5 * a * h,0.160289643,0.247867,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -1671,8 +1671,8 @@ def triangle_area(a, h):
 
 
 Complete the function: 
-",6.238706270568236,14,2.244055
-66,10,512,0.0,0.8571428571428571,77,66,"def factorize(n: int) -> List[int]:
+",6.238706271,14,2.244055
+66,10,512,0,0.857142857,77,66,"def factorize(n: int) -> List[int]:
     factors = []
     i = 2
     while i * i <= n:
@@ -1704,8 +1704,8 @@ def factorize(n: int) -> List[int]:
 
 
 Complete the function: 
-",6.035193870946793,75,12.427107
-67,10,512,0.0,1.0,100,100,"def prime_fib(n: int):
+",6.035193871,75,12.427107
+67,10,512,0,1,100,100,"def prime_fib(n: int):
     def is_prime(num):
         if num < 2:
             return False
@@ -1720,7 +1720,7 @@ Complete the function:
         a, b = b, a + b
         if is_prime(a):
             count += 1
-    return a",0.15202255855855856,0.26091699999999995,"You are a code completion assistant. Read the following code and complete the function.
+    return a",0.152022559,0.260917,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -1743,10 +1743,10 @@ def prime_fib(n: int):
 
 
 Complete the function: 
-",6.577971121403034,111,16.874504
-68,10,512,0.0,0.9444444444444444,18,17,"```python
+",6.577971121,111,16.874504
+68,10,512,0,0.944444444,18,17,"```python
 return sorted(set(l1) & set(l2))
-```",0.17641066666666666,0.325783,"You are a code completion assistant. Read the following code and complete the function.
+```",0.176410667,0.325783,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -1763,12 +1763,12 @@ def common(l1: list, l2: list):
 
 
 Complete the function: 
-",5.668591468391934,21,3.704624
-69,10,512,0.0,1.0,36,36,"```python
+",5.668591468,21,3.704624
+69,10,512,0,1,36,36,"```python
 min_val = min(numbers)
 max_val = max(numbers)
 return [(x - min_val) / (max_val - min_val) for x in numbers]
-```",0.14610039024390245,0.230326,"You are a code completion assistant. Read the following code and complete the function.
+```",0.14610039,0.230326,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -1784,8 +1784,8 @@ def rescale_to_unit(numbers: List[float]) -> List[float]:
 
 
 Complete the function: 
-",6.844608685374373,41,5.9901159999999996
-70,10,512,0.0,1.0,98,98,"def f(n):
+",6.844608685,41,5.990116
+70,10,512,0,1,98,98,"def f(n):
     def factorial(x):
         if x == 0:
             return 1
@@ -1799,7 +1799,7 @@ Complete the function:
             result.append(factorial(i))
         else:
             result.append(sum_to_x(i))
-    return result",0.15771551376146792,0.228655,"You are a code completion assistant. Read the following code and complete the function.
+    return result",0.157715514,0.228655,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -1816,8 +1816,8 @@ def f(n):
 
 
 Complete the function: 
-",6.340530339408589,109,17.190991
-71,10,512,0.0,0.9803921568627451,51,50,"def is_simple_power(x, n):
+",6.340530339,109,17.190991
+71,10,512,0,0.980392157,51,50,"def is_simple_power(x, n):
     if x == 1:
         return True
     if n <= 1:
@@ -1825,7 +1825,7 @@ Complete the function:
     power = n
     while power < x:
         power *= n
-    return power == x",0.1878191754385965,0.261893,"You are a code completion assistant. Read the following code and complete the function.
+    return power == x",0.187819175,0.261893,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -1845,8 +1845,8 @@ def is_simple_power(x, n):
 
 
 Complete the function: 
-",5.324269993544557,57,10.705693
-72,10,512,0.0,1.0,86,86,"def histogram(test):
+",5.324269994,57,10.705693
+72,10,512,0,1,86,86,"def histogram(test):
     count = {}
     max_count = 0
     for letter in test.split():
@@ -1857,7 +1857,7 @@ Complete the function:
         else:
             count[letter] = 1
     result = {letter: count for letter, count in count.items() if count == max_count}
-    return result",0.14111531249999998,0.23271799999999998,"You are a code completion assistant. Read the following code and complete the function.
+    return result",0.141115312,0.232718,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -1878,14 +1878,14 @@ def histogram(test):
 
 
 Complete the function: 
-",7.0864031853382325,96,13.54707
-73,10,512,0.0,0.98,50,49,"def choose_num(x, y):
+",7.086403185,96,13.54707
+73,10,512,0,0.98,50,49,"def choose_num(x, y):
     if x > y:
         return -1
     for i in range(y, x-1, -1):
         if i % 2 == 0:
             return i
-    return -1",0.13583473214285716,0.222999,"You are a code completion assistant. Read the following code and complete the function.
+    return -1",0.135834732,0.222999,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -1902,8 +1902,8 @@ def choose_num(x, y):
 
 
 Complete the function: 
-",7.361887377583972,56,7.606745
-74,10,512,0.0,1.0,28,28,"return sum(1 for i in range(0, len(s), 2) if s[i] in 'AEIOU')",0.1410296875,0.23365799999999998,"You are a code completion assistant. Read the following code and complete the function.
+",7.361887378,56,7.606745
+74,10,512,0,1,28,28,"return sum(1 for i in range(0, len(s), 2) if s[i] in 'AEIOU')",0.141029688,0.233658,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -1920,8 +1920,8 @@ def count_upper(s):
 
 
 Complete the function: 
-",7.090705636003058,32,4.51295
-75,10,512,0.0,1.0,40,40,"stack = []
+",7.090705636,32,4.51295
+75,10,512,0,1,40,40,"stack = []
 for bracket in brackets:
     if bracket == ""<"":
         stack.append(bracket)
@@ -1929,7 +1929,7 @@ for bracket in brackets:
         if not stack:
             return False
         stack.pop()
-return not stack",0.1439888888888889,0.219622,"You are a code completion assistant. Read the following code and complete the function.
+return not stack",0.143988889,0.219622,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -1951,15 +1951,15 @@ def correct_bracketing(brackets: str):
 
 
 Complete the function: 
-",6.944980322555753,45,6.4795
-76,10,512,0.0,1.0,50,50,"def special_factorial(n):
+",6.944980323,45,6.4795
+76,10,512,0,1,50,50,"def special_factorial(n):
     result = 1
     for i in range(1, n + 1):
         factorial = 1
         for j in range(1, i + 1):
             factorial *= j
         result *= factorial
-    return result",0.1459903275862069,0.23067400000000002,"You are a code completion assistant. Read the following code and complete the function.
+    return result",0.145990328,0.230674,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -1979,8 +1979,8 @@ def special_factorial(n):
 
 
 Complete the function: 
-",6.849768861635731,58,8.467439
-77,10,512,0.0,0.0,2,0,n,0.251921,0.251597,"You are a code completion assistant. Read the following code and complete the function.
+",6.849768862,58,8.467439
+77,10,512,0,0,2,0,n,0.251921,0.251597,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -2001,8 +2001,8 @@ def car_race_collision(n: int):
 
 
 Complete the function: 
-",3.9694983744904158,2,0.503842
-78,10,512,0.0,1.0,90,90,"def parse_nested_parens(paren_string: str) -> List[int]:
+",3.969498374,2,0.503842
+78,10,512,0,1,90,90,"def parse_nested_parens(paren_string: str) -> List[int]:
     result = []
     for group in paren_string.split():
         max_nesting = 0
@@ -2014,7 +2014,7 @@ Complete the function:
             elif char == ')':
                 current_nesting -= 1
         result.append(max_nesting)
-    return result",0.14691448039215685,0.259151,"You are a code completion assistant. Read the following code and complete the function.
+    return result",0.14691448,0.259151,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -2032,11 +2032,11 @@ def parse_nested_parens(paren_string: str) -> List[int]:
 
 
 Complete the function: 
-",6.806680984275433,102,14.985277
-79,10,512,0.0,1.0,34,34,"for i in range(len(arr) - 1, -1, -1):
+",6.806680984,102,14.985277
+79,10,512,0,1,34,34,"for i in range(len(arr) - 1, -1, -1):
     if arr[i] < arr[i - 1]:
         return i
-return -1",0.16125782051282053,0.299477,"You are a code completion assistant. Read the following code and complete the function.
+return -1",0.161257821,0.299477,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -2054,14 +2054,14 @@ def can_arrange(arr):
 
 
 Complete the function: 
-",6.2012496313039085,39,6.289055
-80,10,512,0.0,1.0,45,45,"```python
+",6.201249631,39,6.289055
+80,10,512,0,1,45,45,"```python
 for i in range(len(numbers) - 1):
     for j in range(i + 1, len(numbers)):
         if abs(numbers[i] - numbers[j]) < threshold:
             return True
 return False
-```",0.1519176862745098,0.265865,"You are a code completion assistant. Read the following code and complete the function.
+```",0.151917686,0.265865,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -2079,10 +2079,10 @@ def has_close_elements(numbers: List[float], threshold: float) -> bool:
 
 
 Complete the function: 
-",6.58251204664239,51,7.747802
-81,10,512,0.0,0.9583333333333334,24,23,"for i in range(n//2, 0, -1):
+",6.582512047,51,7.747802
+81,10,512,0,0.958333333,24,23,"for i in range(n//2, 0, -1):
     if n % i == 0:
-        return i",0.10313848148148148,0.180023,"You are a code completion assistant. Read the following code and complete the function.
+        return i",0.103138481,0.180023,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -2096,8 +2096,8 @@ def largest_divisor(n: int) -> int:
 
 
 Complete the function: 
-",9.695702182502561,27,2.784739
-82,10,512,0.0,1.0,88,88,"def tri(n):
+",9.695702183,27,2.784739
+82,10,512,0,1,88,88,"def tri(n):
     if n == 0:
         return [3]
     if n == 1:
@@ -2108,7 +2108,7 @@ Complete the function:
             sequence.append(1 + i / 2)
         else:
             sequence.append(sequence[-1] + sequence[-2] + sequence[0])
-    return sequence",0.10442570408163264,0.200888,"You are a code completion assistant. Read the following code and complete the function.
+    return sequence",0.104425704,0.200888,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -2133,9 +2133,9 @@ def tri(n):
 
 
 Complete the function: 
-",9.57618633069757,98,10.233718999999999
-83,10,512,0.0,1.0,135,135,"def numerical_letter_grade(grades):
-    return ['A+' if g == 4.0 else 'A' if g > 3.7 else 'A-' if g > 3.3 else 'B+' if g > 3.0 else 'B' if g > 2.7 else 'B-' if g > 2.3 else 'C+' if g > 2.0 else 'C' if g > 1.7 else 'C-' if g > 1.3 else 'D+' if g > 1.0 else 'D' if g > 0.7 else 'D-' if g > 0.0 else 'E' for g in grades]",0.11389791999999999,0.20505,"You are a code completion assistant. Read the following code and complete the function.
+",9.576186331,98,10.233719
+83,10,512,0,1,135,135,"def numerical_letter_grade(grades):
+    return ['A+' if g == 4.0 else 'A' if g > 3.7 else 'A-' if g > 3.3 else 'B+' if g > 3.0 else 'B' if g > 2.7 else 'B-' if g > 2.3 else 'C+' if g > 2.0 else 'C' if g > 1.7 else 'C-' if g > 1.3 else 'D+' if g > 1.0 else 'D' if g > 0.7 else 'D-' if g > 0.0 else 'E' for g in grades]",0.11389792,0.20505,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -2168,8 +2168,8 @@ def numerical_letter_grade(grades):
 
 
 Complete the function: 
-",8.779791588819183,150,17.084688
-84,10,512,0.0,1.0,6,6,return sorted(set(l)),0.10316875,0.20228800000000002,"You are a code completion assistant. Read the following code and complete the function.
+",8.779791589,150,17.084688
+84,10,512,0,1,6,6,return sorted(set(l)),0.10316875,0.202288,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -2183,8 +2183,8 @@ def unique(l: list):
 
 
 Complete the function: 
-",9.692857575574,8,0.82535
-85,10,512,0.0,0.9655172413793104,29,28,"import hashlib
+",9.692857576,8,0.82535
+85,10,512,0,0.965517241,29,28,"import hashlib
 
 def string_to_md5(text):
     if text == """":
@@ -2204,8 +2204,8 @@ def string_to_md5(text):
 
 
 Complete the function: 
-",8.624360584516038,32,3.71042
-86,10,512,0.0,0.9722222222222222,36,35,"return all(x <= y for x, y in zip(l, l[1:])) or all(x >= y for x, y in zip(l, l[1:]))",0.11917842857142857,0.197585,"You are a code completion assistant. Read the following code and complete the function.
+",8.624360585,32,3.71042
+86,10,512,0,0.972222222,36,35,"return all(x <= y for x, y in zip(l, l[1:])) or all(x >= y for x, y in zip(l, l[1:]))",0.119178429,0.197585,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -2223,12 +2223,12 @@ def monotonic(l: list):
 
 
 Complete the function: 
-",8.390780210704477,42,5.005494
-87,10,512,0.0,1.0,70,70,"```python
+",8.390780211,42,5.005494
+87,10,512,0,1,70,70,"```python
 s = (a + b + c) / 2
 area = (s * (s - a) * (s - b) * (s - c)) ** 0.5
 return round(area, 2) if a + b > c and a + c > b and b + c > a else -1
-```",0.09721761538461539,0.192634,"You are a code completion assistant. Read the following code and complete the function.
+```",0.097217615,0.192634,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -2247,8 +2247,8 @@ def triangle_area(a, b, c):
 
 
 Complete the function: 
-",10.286201693425296,78,7.582974
-88,10,512,0.0,1.0,80,80,"def skjkasdkd(lst):
+",10.28620169,78,7.582974
+88,10,512,0,1,80,80,"def skjkasdkd(lst):
     def is_prime(n):
         if n < 2:
             return False
@@ -2258,7 +2258,7 @@ Complete the function:
         return True
     
     max_prime = max(filter(is_prime, lst))
-    return sum(int(digit) for digit in str(max_prime))",0.07001146067415731,0.168795,"You are a code completion assistant. Read the following code and complete the function.
+    return sum(int(digit) for digit in str(max_prime))",0.070011461,0.168795,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -2279,11 +2279,11 @@ def skjkasdkd(lst):
 
 
 Complete the function: 
-",14.283375755494284,89,6.23102
-89,10,512,0.0,1.0,72,72,"def decode_cyclic(s: str):
+",14.28337576,89,6.23102
+89,10,512,0,1,72,72,"def decode_cyclic(s: str):
     groups = [s[(3 * i):min((3 * i + 3), len(s))] for i in range((len(s) + 2) // 3)]
     groups = [(group[-1] + group[:-1]) if len(group) == 3 else group for group in groups]
-    return """".join(groups)",0.07440095061728395,0.161297,"You are a code completion assistant. Read the following code and complete the function.
+    return """".join(groups)",0.074400951,0.161297,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -2307,8 +2307,8 @@ def decode_cyclic(s: str):
 
 
 Complete the function: 
-",13.440688481844369,81,6.026477
-90,10,512,0.0,0.9821428571428571,56,55,"def sort_array(array):
+",13.44068848,81,6.026477
+90,10,512,0,0.982142857,56,55,"def sort_array(array):
     if not array:
         return []
     first = array[0]
@@ -2316,7 +2316,7 @@ Complete the function:
     if (first + last) % 2 == 0:
         return sorted(array, reverse=True)
     else:
-        return sorted(array)",0.08280979365079365,0.15742599999999998,"You are a code completion assistant. Read the following code and complete the function.
+        return sorted(array)",0.082809794,0.157426,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -2339,10 +2339,10 @@ def sort_array(array):
 
 
 Complete the function: 
-",12.075866342777875,63,5.217017
-91,10,512,0.0,1.0,13,13,"```python
+",12.07586634,63,5.217017
+91,10,512,0,1,13,13,"```python
 return set(s0) == set(s1)
-```",0.0827149375,0.16748400000000002,"You are a code completion assistant. Read the following code and complete the function.
+```",0.082714938,0.167484,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -2367,9 +2367,9 @@ def same_chars(s0: str, s1: str):
 
 
 Complete the function: 
-",12.089714750736528,16,1.323439
-92,10,512,0.0,1.0,20,20,"def modp(n: int, p: int):
-    return pow(2, n, p)",0.08465295652173913,0.168272,"You are a code completion assistant. Read the following code and complete the function.
+",12.08971475,16,1.323439
+92,10,512,0,1,20,20,"def modp(n: int, p: int):
+    return pow(2, n, p)",0.084652957,0.168272,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -2391,8 +2391,8 @@ def modp(n: int, p: int):
 
 
 Complete the function: 
-",11.812936500843856,23,1.9470180000000001
-93,10,512,0.0,0.9891304347826086,92,91,"def intersection(interval1, interval2):
+",11.8129365,23,1.947018
+93,10,512,0,0.989130435,92,91,"def intersection(interval1, interval2):
     start = max(interval1[0], interval2[0])
     end = min(interval1[1], interval2[1])
     length = end - start + 1
@@ -2401,7 +2401,7 @@ Complete the function:
     for i in range(2, int(length**0.5) + 1):
         if length % i == 0:
             return ""NO""
-    return ""YES""",0.1239596274509804,0.19525299999999998,"You are a code completion assistant. Read the following code and complete the function.
+    return ""YES""",0.123959627,0.195253,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -2429,15 +2429,15 @@ def intersection(interval1, interval2):
 
 
 Complete the function: 
-",8.067142670265351,102,12.643882
-94,10,512,0.0,0.9714285714285714,35,34,"```python
+",8.06714267,102,12.643882
+94,10,512,0,0.971428571,35,34,"```python
 balance = 0
 for op in operations:
     balance += op
     if balance < 0:
         return True
 return False
-```",0.1270798717948718,0.214586,"You are a code completion assistant. Read the following code and complete the function.
+```",0.127079872,0.214586,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -2456,11 +2456,11 @@ def below_zero(operations: List[int]) -> bool:
 
 
 Complete the function: 
-",7.869066799297434,39,4.956115
-95,10,512,0.0,0.98,50,49,"def total_match(lst1, lst2):
+",7.869066799,39,4.956115
+95,10,512,0,0.98,50,49,"def total_match(lst1, lst2):
     total1 = sum(len(word) for word in lst1)
     total2 = sum(len(word) for word in lst2)
-    return lst1 if total1 <= total2 else lst2",0.13109564285714284,0.211808,"You are a code completion assistant. Read the following code and complete the function.
+    return lst1 if total1 <= total2 else lst2",0.131095643,0.211808,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -2482,8 +2482,8 @@ def total_match(lst1, lst2):
 
 
 Complete the function: 
-",7.628018584032705,56,7.341355999999999
-96,10,512,0.0,1.0,20,20,"```python
+",7.628018584,56,7.341356
+96,10,512,0,1,20,20,"```python
 return (a % 10) * (b % 10)
 ```",0.128631,0.224543,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
@@ -2503,8 +2503,8 @@ def multiply(a, b):
 
 
 Complete the function: 
-",7.774175743016848,23,2.958513
-97,10,512,0.0,1.0,70,70,"def is_sorted(lst):
+",7.774175743,23,2.958513
+97,10,512,0,1,70,70,"def is_sorted(lst):
     if len(lst) < 2:
         return True
     prev = lst[0]
@@ -2514,7 +2514,7 @@ Complete the function:
         if lst[i] == prev and lst.count(prev) > 1:
             return False
         prev = lst[i]
-    return True",0.13710026923076923,0.227439,"You are a code completion assistant. Read the following code and complete the function.
+    return True",0.137100269,0.227439,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -2538,8 +2538,8 @@ def is_sorted(lst):
 
 
 Complete the function: 
-",7.293931701306764,78,10.693821
-98,10,512,0.0,1.0,33,33,"```python
+",7.293931701,78,10.693821
+98,10,512,0,1,33,33,"```python
 result = []
 seen = set()
 for num in numbers:
@@ -2547,7 +2547,7 @@ for num in numbers:
         result.append(num)
         seen.add(num)
 return result
-```",0.12797273684210525,0.21212299999999998,"You are a code completion assistant. Read the following code and complete the function.
+```",0.127972737,0.212123,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -2563,10 +2563,10 @@ def remove_duplicates(numbers: List[int]) -> List[int]:
 
 
 Complete the function: 
-",7.814164365600897,38,4.862964
-99,10,512,0.0,1.0,30,30,"```python
+",7.814164366,38,4.862964
+99,10,512,0,1,30,30,"```python
 return a*a + b*b == c*c or a*a + c*c == b*b or b*b + c*c == a*a
-```",0.12822517647058823,0.23792,"You are a code completion assistant. Read the following code and complete the function.
+```",0.128225176,0.23792,"You are a code completion assistant. Read the following code and complete the function.
 Output ONLY Python code for the function body (no def, no docstring, no comments, no tests, no prints).
 
 Code:
@@ -2584,4 +2584,4 @@ def right_angle_triangle(a, b, c):
 
 
 Complete the function: 
-",7.798780454237674,34,4.359656
+",7.798780454,34,4.359656

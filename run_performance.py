@@ -3,6 +3,7 @@ Entry point for running performance benchmarks.
 """
 import argparse
 from experiments.performance import PerformanceExperiment
+from utils.logging_config import setup_logging
 
 
 def parse_args():
@@ -96,6 +97,14 @@ def parse_args():
         help="Disable generating plots"
     )
     
+    # Logging options
+    parser.add_argument(
+        '--log_file',
+        type=str,
+        default=None,
+        help="Path to log file (default: {output_dir}/{experiment_name}/{experiment_name}.log)"
+    )
+    
     return parser.parse_args()
 
 
@@ -113,6 +122,13 @@ if __name__ == "__main__":
         'output_dir': args.output_dir,
         'experiment_name': args.experiment_name
     }
+    
+    # Setup logging
+    setup_logging(
+        log_file=args.log_file,
+        experiment_name=args.experiment_name,
+        output_dir=args.output_dir
+    )
     
     # Create experiment instance
     experiment = PerformanceExperiment(**config)

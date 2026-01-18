@@ -67,6 +67,7 @@ python run_performance.py --num_samples 50 --max_tokens 10,20,30 --no_randomize_
 - `--randomize_order`: Randomize test order (default: enabled)
 - `--no_randomize_order`: Disable randomization
 - `--no_plot`: Disable plot generation
+- `--log_file`: Custom log file path (default: `results/performance/performance.log`)
 
 Run `python run_performance.py --help` for all options.
 
@@ -74,6 +75,7 @@ Run `python run_performance.py --help` for all options.
 - `performance_results.csv` - Per-sample metrics (TTFT, throughput, latency)
 - `performance_results.jsonl` - Same data in JSONL format
 - `performance_benchmark_plot.png` - Violin plots visualizing distributions
+- `performance.log` - Execution logs (warnings, errors)
 
 ---
 
@@ -99,6 +101,7 @@ python run_speculative_performance.py --draft_steps 10,25,50,100 --fixed_max_tok
 - `--spec_p_min`: Min probability threshold (default: `0.5`)
 - `--seed`: Random seed (default: `2026`)
 - `--no_plot`: Disable plot generation
+- `--log_file`: Custom log file path (default: `results/speculative_performance/speculative_performance.log`)
 
 Run `python run_speculative_performance.py --help` for all options.
 
@@ -107,6 +110,7 @@ Run `python run_speculative_performance.py --help` for all options.
 - `speculative_performance_benchmark_plot.png` - Violin plots by draft steps
 - `speculative_metrics_by_draft_steps.png` - Bar chart of average metrics
 - `evaluation_time_by_draft_steps.png` - Total evaluation time comparison
+- `speculative_performance.log` - Execution logs (warnings, errors)
 
 ---
 
@@ -130,6 +134,7 @@ python run_evaluation.py --num_samples 164 --max_tokens 256
 - `--seed`: Random seed (default: `2026`)
 - `--experiment_name`: Custom experiment name (default: `evaluation`)
 - `--no_save`: Disable saving results
+- `--log_file`: Custom log file path (default: `results/evaluation/evaluation.log`)
 
 Run `python run_evaluation.py --help` for all options.
 
@@ -137,6 +142,7 @@ Run `python run_evaluation.py --help` for all options.
 - `evaluation_results.csv` - Per-problem scores (exact match, BLEU, unit tests)
 - `evaluation_results.jsonl` - Detailed results with generated code
 - `evaluation_analysis.json` - Summary statistics (pass rates, averages)
+- `evaluation.log` - Execution logs (warnings, errors)
 
 **Metrics computed:**
 - Exact match rate: Percentage of perfect matches with reference solution
@@ -167,6 +173,7 @@ python run_speculative_evaluation.py --draft_step_size 100 --num_samples 164 --m
 - `--spec_p_min`: Min probability threshold (default: `0.5`)
 - `--seed`: Random seed (default: `2026`)
 - `--experiment_name`: Custom name (default: `evaluation_speculative_n{draft_step_size}`)
+- `--log_file`: Custom log file path (default: `results/evaluation_speculative_n{X}/evaluation_speculative_n{X}.log`)
 
 Run `python run_speculative_evaluation.py --help` for all options.
 
@@ -174,6 +181,7 @@ Run `python run_speculative_evaluation.py --help` for all options.
 - `evaluation_speculative_n{X}_results.csv` - Per-problem evaluation metrics
 - `evaluation_speculative_n{X}_results.jsonl` - Full results with generated code
 - `evaluation_speculative_n{X}_analysis.json` - Summary with quality metrics and config
+- `evaluation_speculative_n{X}.log` - Execution logs (warnings, errors)
 
 **Note:** Experiment name includes draft step size (e.g., `evaluation_speculative_n50`) to distinguish different configurations.
 
@@ -206,6 +214,9 @@ python run_speculative_performance.py \
 # Use different server
 python run_performance.py --server_url http://localhost:9000
 
+# Custom log file location
+python run_evaluation.py --log_file logs/my_experiment.log
+
 # Get help for any script
 python run_performance.py --help
 ```
@@ -219,22 +230,26 @@ results/
 ├── performance/                          # Standard performance results
 │   ├── performance_results.csv          # Detailed metrics per sample
 │   ├── performance_results.jsonl        # JSONL format
-│   └── performance_benchmark_plot.png   # Visualization
+│   ├── performance_benchmark_plot.png   # Visualization
+│   └── performance.log                  # Execution logs
 │
 ├── speculative_performance/              # Speculative decoding performance
 │   ├── speculative_performance_results.csv
 │   ├── speculative_performance_benchmark_plot.png
-│   └── speculative_metrics_by_draft_steps.png
+│   ├── speculative_metrics_by_draft_steps.png
+│   └── speculative_performance.log
 │
 ├── evaluation/                           # Standard evaluation results
 │   ├── evaluation_results.csv           # Per-sample evaluation metrics
 │   ├── evaluation_results.jsonl
-│   └── evaluation_analysis.json         # Summary statistics
+│   ├── evaluation_analysis.json         # Summary statistics
+│   └── evaluation.log
 │
 └── evaluation_speculative_n{X}/          # Speculative evaluation (X = draft steps)
     ├── evaluation_speculative_n{X}_results.csv
     ├── evaluation_speculative_n{X}_results.jsonl
-    └── evaluation_speculative_n{X}_analysis.json
+    ├── evaluation_speculative_n{X}_analysis.json
+    └── evaluation_speculative_n{X}.log
 ```
 
 ## Configuration
