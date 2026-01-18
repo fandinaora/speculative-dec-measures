@@ -13,7 +13,7 @@ from utils.evaluation_metrics import (
     exact_match,
     bleu_score,
     extract_completion_only,
-    run_unit_tests
+    run_unit_tests_in_docker
 )
 
 
@@ -418,7 +418,7 @@ class EvaluationExperiment(Experiment):
         if Metric.UNIT_TESTS in metrics:
             unit_test_result = {'passed': False, 'error': 'No test code available', 'output': ''}
             if test_code:
-                unit_test_result = run_unit_tests(
+                unit_test_result = run_unit_tests_in_docker(
                     prompt=prompt,
                     generated_code=generated_code,
                     test_code=test_code,

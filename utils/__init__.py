@@ -21,6 +21,7 @@ from .evaluation_metrics import (
     bleu_score,
     extract_completion_only,
     run_unit_tests,
+    run_unit_tests_in_docker,
     normalize_code
 )
 
@@ -38,5 +39,6 @@ __all__ = [
     'bleu_score',
     'extract_code_from_response',
     'run_unit_tests',
+    'run_unit_tests_in_docker',
     'normalize_code'
 ]

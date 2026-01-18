@@ -61,9 +61,5 @@ def setup_logging(
     console_handler.setFormatter(formatter)
     root_logger.addHandler(console_handler)
     
-    # Log initialization message
-    root_logger.info(f"Logging initialized. Log file: {log_file}")
-    root_logger.info(f"Experiment: {experiment_name}")
-    root_logger.info(f"Log level: {logging.getLevelName(log_level)}")
     
     return root_logger
