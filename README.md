@@ -26,7 +26,7 @@ pip install -r requirements.txt
 
 ### 2. Start llama.cpp Server
 
-Start llama.cpp server with speculative decoding (draft model for speedup):
+**For speculative decoding experiments** (draft model for speedup):
 
 ```bash
 # CPU mode (recommended for limited GPU memory)
@@ -39,6 +39,8 @@ llama-server -hf Qwen/Qwen2.5-7B-Instruct-GGUF:Q4_K_M \
   --hf-repo-draft Qwen/Qwen2.5-0.5B-Instruct-GGUF:Q4_K_M \
   --port 8081 -ngl 99 -ngld 99
 ```
+
+**For standard experiments** (no speculative decoding), omit `--hf-repo-draft` and `-ngld` flags.
 
 Server will be available at `http://127.0.0.1:8081`
 
